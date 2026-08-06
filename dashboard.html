@@ -1,0 +1,269 @@
+<title>Command Center — AI the vL Way</title>
+<style>
+  :root{
+    --ground:#F7F3EE; --panel:#FFFFFF; --panel-2:#EFE7DC;
+    --navy:#14314F; --navy-2:#0E2740; --ink:#14314F; --ink-soft:#5B6B7A;
+    --cognac:#C67A3C; --cognac-ink:#8B5628; --tint:#E7ECF3;
+    --good:#3F7D5A; --warn:#C6892F; --risk:#B4472F;
+    --line:#E2D8CA; --shadow:0 1px 2px rgba(20,49,79,.06),0 6px 20px rgba(20,49,79,.07);
+    --radius:16px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#0E2740; --panel:#153048; --panel-2:#1B3B57;
+      --ink:#EAF1F7; --ink-soft:#9DB2C4; --navy:#EAF1F7; --navy-2:#cfe0ee;
+      --cognac:#E0995A; --cognac-ink:#E8A867; --tint:#1B3B57;
+      --good:#68B08A; --warn:#E0B15C; --risk:#E08066;
+      --line:#26445e; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.28);
+    }
+  }
+  :root[data-theme="light"]{
+    --ground:#F7F3EE; --panel:#FFFFFF; --panel-2:#EFE7DC; --ink:#14314F; --ink-soft:#5B6B7A;
+    --navy:#14314F; --navy-2:#0E2740; --cognac:#C67A3C; --cognac-ink:#8B5628; --tint:#E7ECF3;
+    --good:#3F7D5A; --warn:#C6892F; --risk:#B4472F; --line:#E2D8CA;
+    --shadow:0 1px 2px rgba(20,49,79,.06),0 6px 20px rgba(20,49,79,.07);
+  }
+  :root[data-theme="dark"]{
+    --ground:#0E2740; --panel:#153048; --panel-2:#1B3B57; --ink:#EAF1F7; --ink-soft:#9DB2C4;
+    --navy:#EAF1F7; --navy-2:#cfe0ee; --cognac:#E0995A; --cognac-ink:#E8A867; --tint:#1B3B57;
+    --good:#68B08A; --warn:#E0B15C; --risk:#E08066; --line:#26445e;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.28);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:clamp(20px,4vw,44px) clamp(16px,4vw,32px) 64px}
+  .eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:700;color:var(--cognac-ink)}
+  h1{font-size:clamp(28px,5vw,40px);margin:.15em 0 .1em;letter-spacing:-.02em;color:var(--navy);text-wrap:balance}
+  .sub{color:var(--ink-soft);font-size:15px;margin:0}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:10px;font-size:13px;color:var(--ink-soft)}
+  .meta b{color:var(--ink)}
+
+  section{margin-top:34px}
+  .sectitle{display:flex;align-items:baseline;gap:10px;margin:0 0 14px;font-size:13px;
+    text-transform:uppercase;letter-spacing:.14em;font-weight:700;color:var(--ink-soft)}
+
+  /* Do-first band */
+  .dofirst{background:linear-gradient(135deg,var(--navy),var(--navy-2));color:#F7F3EE;
+    border-radius:var(--radius);padding:22px 22px 20px;box-shadow:var(--shadow)}
+  .dofirst .k{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:-.01em;font-size:18px;margin-bottom:14px}
+  .dofirst ol{margin:0;padding-left:0;list-style:none;counter-reset:d;display:grid;gap:10px}
+  .dofirst li{counter-increment:d;display:flex;gap:12px;align-items:flex-start;font-size:15px}
+  .dofirst li::before{content:counter(d);flex:0 0 26px;height:26px;border-radius:8px;
+    background:var(--cognac);color:#12233a;font-weight:800;display:grid;place-items:center;font-size:13px}
+  .dofirst .who{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+    color:#E8B98C;margin-left:6px}
+
+  /* project grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px 18px 16px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:10px}
+  .card h3{margin:0;font-size:17px;color:var(--navy);letter-spacing:-.01em}
+  .card .line{color:var(--ink-soft);font-size:13.5px;margin:0}
+  .chip{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;
+    padding:4px 10px;border-radius:999px;white-space:nowrap;width:fit-content}
+  .chip::before{content:"";width:8px;height:8px;border-radius:50%}
+  .chip.green{background:color-mix(in srgb,var(--good) 16%,transparent);color:var(--good)}
+  .chip.green::before{background:var(--good)}
+  .chip.amber{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+  .chip.amber::before{background:var(--warn)}
+  .chip.red{background:color-mix(in srgb,var(--risk) 16%,transparent);color:var(--risk)}
+  .chip.red::before{background:var(--risk)}
+  .items{list-style:none;margin:2px 0 0;padding:0;display:grid;gap:7px}
+  .items li{display:flex;gap:8px;font-size:13px;align-items:flex-start}
+  .tag{flex:0 0 auto;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+    padding:2px 6px;border-radius:5px;margin-top:1px}
+  .tag.p{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+  .tag.d{background:var(--tint);color:var(--navy)}
+  .tag.u{background:color-mix(in srgb,var(--cognac) 22%,transparent);color:var(--cognac-ink)}
+
+  /* two-col columns */
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:640px){.cols{grid-template-columns:1fr}}
+  .col{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+  .col h4{margin:0 0 12px;font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft)}
+  .row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--line);font-size:13.5px}
+  .row:first-of-type{border-top:none}
+  .row .r{color:var(--ink-soft);font-size:12px;white-space:nowrap}
+  .have .row .r{color:var(--good);font-weight:700}
+  .need .row .r{color:var(--cognac-ink);font-weight:700}
+
+  .tblwrap{overflow-x:auto;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+  .tbl{width:100%;border-collapse:collapse;font-size:13.5px;min-width:560px}
+  .tbl th{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-soft);text-align:left;padding:12px 14px 8px;border-bottom:1px solid var(--line)}
+  .tbl td{padding:9px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+  .tbl tr:last-child td{border-bottom:none}
+  .tbl td.n{font-weight:800;color:var(--cognac-ink);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .tbl td.c{white-space:nowrap;color:var(--ink-soft)}
+  .ptag{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:5px;background:var(--tint);color:var(--navy);white-space:nowrap}
+  .legend{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px;font-size:12px;color:var(--ink-soft)}
+  .foot{margin-top:22px;font-size:12.5px;color:var(--ink-soft);border-top:1px solid var(--line);padding-top:16px}
+  .foot b{color:var(--ink)}
+  code{background:var(--tint);color:var(--navy);padding:1px 6px;border-radius:5px;font-size:.9em}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">AI the vL Way · Command Center</div>
+    <h1>The whole board, one screen</h1>
+    <p class="sub">Everything across your ventures — what's done, what's pending, what needs you.</p>
+    <div class="meta">
+      <span>Updated <b>Aug 6, 2026</b></span>
+      <span>🔥 Ignite publish is <b>the</b> click — everything queues behind it</span>
+      <span>Source of truth: <code>command-center/</code> · your list: <code>JEFF-TASKS.md</code></span>
+    </div>
+  </header>
+
+  <section>
+    <div class="dofirst">
+      <div class="k">🔥 Do first — Ignite web launch</div>
+      <ol>
+        <li><span><b>Publish the app</b> in Lovable (commit <code>923542c4</code>) — carries the fix for the unclickable hero buttons. Nothing goes live until this.<span class="who">You</span></span></li>
+        <li><span><b>Test purchase</b> — buy with a real card, confirm it charges + unlocks, then refund.<span class="who">You</span></span></li>
+        <li><span><b>Lock your Instagram handle</b> + post launch content and DM your network.<span class="who">You</span></span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section>
+    <div class="sectitle">Projects</div>
+    <div class="grid">
+
+      <div class="card">
+        <span class="chip green">Launch-ready</span>
+        <h3>Ignite AI Academy</h3>
+        <p class="line">App done, secure, payments LIVE ($19.99 / $143.90 verified). Warm+Iggy rebrand. Your free-Pro comp active. Full QA passed.</p>
+        <ul class="items">
+          <li><span class="tag p">Pending</span> Publish · test purchase · in-app vibe-coding lead magnet</li>
+          <li><span class="tag d">Decide</span> Payout schedule · custom domain name</li>
+          <li><span class="tag u">URL</span> Custom domain (later: Google $25 / Apple $99)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="chip amber">Ready · on deck</span>
+        <h3>90 to Market</h3>
+        <p class="line">Validated GO. All branded assets built (offer, cohort, DoD, intake, emails). Runs after Ignite proves the method.</p>
+        <ul class="items">
+          <li><span class="tag d">Decide</span> Cohort price · seats · start date</li>
+          <li><span class="tag u">URL</span> Domain · Cal.com · Stripe links · Resend key</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="chip green">Stable</span>
+        <h3>AI the vL Way</h3>
+        <p class="line">The umbrella brand. Package current: navy secondary #14314F, palette, voice. Everything else lives under it.</p>
+        <ul class="items">
+          <li><span class="tag d">Ongoing</span> The course · keep brand consistent across ventures</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="chip amber">Revived Aug 6</span>
+        <h3>Build It Once</h3>
+        <p class="line">Claude Setup Kit for builders &amp; trades. 100% built + stress-tested; stalled pre-launch in July, forgotten, now revived. Sales page, listing copy &amp; Gumroad sheet all ready.</p>
+        <ul class="items">
+          <li><span class="tag p">Pending</span> 5-day launch run: payout · Gumroad · record walkthrough · test buy · soft launch</li>
+          <li><span class="tag d">Decide</span> New live-by date (old: Jul 31)</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="chip green">Built · pending publish</span>
+        <h3>Vibe Coding Free Course</h3>
+        <p class="line">Free 3-lesson lead magnet at <code>/free</code> — email gate, copy-paste prompts, two doors: Ignite trial + 90tM waitlist. Ships with the Ignite publish click.</p>
+        <ul class="items">
+          <li><span class="tag p">Pending</span> Publish (rides Ignite) · point IG traffic at it · Resend welcome email</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <span class="chip amber">Plan ready</span>
+        <h3>Marketing</h3>
+        <p class="line">Instagram-led, cold-start, $0. Strategy: Iggy-led Reels + seed your network + build an email list from day one.</p>
+        <ul class="items">
+          <li><span class="tag p">Pending</span> Lock IG handle · set up profile · batch 7 Reels · launch content</li>
+          <li><span class="tag p">New</span> Guide-snippet posts, Mariah-style — one concept per post in vL voice; seeds the future guide library</li>
+          <li><span class="tag d">Decide</span> On-camera you, or Iggy-forward?</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="sectitle">✋ Jeff's tasks — things only you can do (0 / 13)</div>
+    <div class="cols">
+      <div class="col">
+        <h4>📦 Build It Once revival (start with #4)</h4>
+        <div class="row"><span><b>4.</b> Gumroad payout verification — can stall for days, start first</span></div>
+        <div class="row"><span><b>5.</b> Gumroad account — gmail, not the 5AP email</span></div>
+        <div class="row"><span><b>6.</b> Support email → send to Claude</span></div>
+        <div class="row"><span><b>7.</b> Employment agreement IP check (10 min)</span></div>
+        <div class="row"><span><b>8.</b> Record walkthrough, one take → Claude rebuilds the kit</span></div>
+        <div class="row"><span><b>9.</b> Buy your own kit (plumbing test), refund</span></div>
+        <div class="row"><span><b>10.</b> DM the people who asked · EARLYLOOK code</span></div>
+      </div>
+      <div class="col">
+        <h4>📣 After the publish click + decisions</h4>
+        <div class="row"><span><b>11.</b> IG profile + link-in-bio to /free</span></div>
+        <div class="row"><span><b>12.</b> Batch-film 5–7 Reels (weekend)</span></div>
+        <div class="row"><span><b>13.</b> Post + DM the network — launch message</span></div>
+        <div class="row"><span><b>Decide:</b> Mac for iOS build — own Mac Mini vs cloud Mac, see #11 below · Build It Once date · on-camera vs Iggy · Ignite domain · payout schedule · 90tM cohort terms</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sectitle">🚀 Ignite multi-platform launch — 15 things only you can do (the found list)</div>
+    <div class="tblwrap">
+      <table class="tbl">
+        <tr><th>#</th><th>Do this</th><th>Platform</th><th>Cost</th><th>When</th></tr>
+        <tr><td class="n">1</td><td>Publish the latest app in Lovable</td><td><span class="ptag">Web</span></td><td class="c">$0</td><td class="c">Now</td></tr>
+        <tr><td class="n">2</td><td>Buy + connect a domain (e.g. igniteaiacademy.com)</td><td><span class="ptag">Web</span></td><td class="c">~$12/yr</td><td class="c">Now</td></tr>
+        <tr><td class="n">3</td><td>Add the Stripe webhook + <code>STRIPE_WEBHOOK_SECRET</code></td><td><span class="ptag">All</span></td><td class="c">$0</td><td class="c">Now</td></tr>
+        <tr><td class="n">4</td><td>One live paid test — real card → Pro unlocks → cancel</td><td><span class="ptag">All</span></td><td class="c">~$20 (refund)</td><td class="c">Now</td></tr>
+        <tr><td class="n">5</td><td>Purge test users in Supabase Auth</td><td><span class="ptag">All</span></td><td class="c">$0</td><td class="c">Now</td></tr>
+        <tr><td class="n">6</td><td>Real legal review of Terms + Privacy</td><td><span class="ptag">Stores</span></td><td class="c">varies</td><td class="c">Before store submit</td></tr>
+        <tr><td class="n">7</td><td>Create Google Play Console account</td><td><span class="ptag">Android</span></td><td class="c">$25 once</td><td class="c">Day 1</td></tr>
+        <tr><td class="n">8</td><td>Start the 12-tester / 14-day closed test</td><td><span class="ptag">Android</span></td><td class="c">$0</td><td class="c">Day 1</td></tr>
+        <tr><td class="n">9</td><td>Recruit ~12 testers and get them opted in</td><td><span class="ptag">Android</span></td><td class="c">$0</td><td class="c">Day 1–14</td></tr>
+        <tr><td class="n">10</td><td>Create Apple Developer account</td><td><span class="ptag">iOS</span></td><td class="c">$99/yr</td><td class="c">Day 1</td></tr>
+        <tr><td class="n">11</td><td><b>Get access to a Mac</b> — your own, or a cloud Mac (MacinCloud / Codemagic). <i>The "Mac Mini" you remembered.</i></td><td><span class="ptag">iOS</span></td><td class="c">~$0–30</td><td class="c">Before iOS build</td></tr>
+        <tr><td class="n">12</td><td>Build + submit the iOS app with Capacitor (Claude gives exact steps)</td><td><span class="ptag">iOS</span></td><td class="c">in #10/#11</td><td class="c">Week 1–2</td></tr>
+        <tr><td class="n">13</td><td>Submit Android to production after the closed test passes</td><td><span class="ptag">Android</span></td><td class="c">in #7</td><td class="c">~Week 3</td></tr>
+        <tr><td class="n">14</td><td>Enter store forms — Apple App Privacy + Google Data Safety</td><td><span class="ptag">Stores</span></td><td class="c">$0</td><td class="c">At submission</td></tr>
+        <tr><td class="n">15</td><td>Provide reviewer demo login + approve store copy/screenshots</td><td><span class="ptag">Stores</span></td><td class="c">$0</td><td class="c">At submission</td></tr>
+      </table>
+    </div>
+    <p class="foot" style="margin-top:12px;border-top:none;padding-top:0"><b>Two hard dependencies:</b> iOS needs a Mac (#11); Android's public launch is gated by the 14-day closed test (#8) — so start #7–#10 on the same day.</p>
+  </section>
+
+  <section>
+    <div class="sectitle">URLs, accounts &amp; keys</div>
+    <div class="cols">
+      <div class="col have">
+        <h4>✅ Have</h4>
+        <div class="row"><span>Ignite live site</span><span class="r">live</span></div>
+        <div class="row"><span>Stripe account (CA, live)</span><span class="r">charges + payouts</span></div>
+        <div class="row"><span>Live prices $19.99 / $143.90</span><span class="r">verified</span></div>
+        <div class="row"><span>Supabase backend</span><span class="r">migrate later</span></div>
+      </div>
+      <div class="col need">
+        <h4>❌ Need</h4>
+        <div class="row"><span>Instagram handle</span><span class="r">now</span></div>
+        <div class="row"><span>Ignite custom domain</span><span class="r">soon</span></div>
+        <div class="row"><span>Domain · Cal · Stripe links (90tM)</span><span class="r">after Ignite</span></div>
+        <div class="row"><span>Resend email key</span><span class="r">soon</span></div>
+        <div class="row"><span>Leaked-password + 2FA</span><span class="r">🔒 enable</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="legend">
+    <span>🟢 in good shape</span><span>🟡 needs input / work</span><span>🔴 blocked / at-risk</span>
+  </div>
+  <p class="foot"><b>One rule:</b> this is the only tracker. When something changes, it updates in <code>command-center/</code> — no scattered lists. <b>Next up:</b> automate this board's refresh with a scheduled agent once launch settles.</p>
+</div>
