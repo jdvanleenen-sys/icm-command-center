@@ -1,0 +1,7 @@
+#!/bin/sh
+# Command-centre drift guard. Blocks a commit if a derived view disagrees with
+# the source of truth. Enable once:  git config core.hooksPath .githooks
+node scripts/check-sync.js || {
+  echo "commit blocked: derived views disagree with the source of truth — reconcile, then commit."
+  exit 1
+}

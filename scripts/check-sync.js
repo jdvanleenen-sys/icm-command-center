@@ -3,10 +3,13 @@
  * check-sync.js - drift guard for the command centre.
  *
  * projects/*.md are the SINGLE SOURCE OF TRUTH. STATUS.md, JEFF-TASKS.md and
- * dashboard.html are DERIVED VIEWS. This script exits non-zero if a view
- * disagrees with the source of truth on a guarded fact (the Ignite commit
- * hash or a price), or if a project card is not routed in CLAUDE.md.
- * Run before any status change is considered done:  node scripts/check-sync.js
+ * dashboard.html are DERIVED VIEWS. Exits non-zero if a view disagrees with the
+ * source on a guarded fact (Ignite commit hash, a price, or the numbered-task
+ * count), or if a project card is not routed in CLAUDE.md.
+ *
+ * Runs automatically on every push (.github/workflows/check-sync.yml) and, once
+ * enabled (git config core.hooksPath .githooks), on every commit. By hand:
+ *     node scripts/check-sync.js   (or: npm run check)
  */
 const fs = require("fs");
 const path = require("path");
@@ -33,19 +36,24 @@ const srcPrices = grabPrices(source);
 
 for (const name of ["STATUS.md", "JEFF-TASKS.md", "dashboard.html"]) {
   const text = read(name);
-
-  // Commit hash: any hash a view cites must equal the source's.
   const h = grabHash(text);
   if (h && srcHash && h !== srcHash) {
     errors.push(`${name}: commit ${h} disagrees with source ${srcHash} (${SOURCE})`);
   }
-
-  // Prices: a view must not carry a price the source of truth does not have.
   for (const p of grabPrices(text)) {
     if (srcPrices.size && !srcPrices.has(p)) {
       errors.push(`${name}: price ${p} not in source of truth [${[...srcPrices].join(", ")}] (${SOURCE})`);
     }
   }
+}
+
+// The numbered-task count shown in dashboard.html must match JEFF-TASKS.md.
+const numbered = [...read("JEFF-TASKS.md").matchAll(/^\s*\d+\.\s*\[([ xX])\]/gm)];
+const total = numbered.length;
+const done = numbered.filter((m) => m[1].toLowerCase() === "x").length;
+const cm = read("dashboard.html").match(/tasks[^(]{0,60}\((\d+)\s*\/\s*(\d+)\)/i);
+if (cm && (Number(cm[1]) !== done || Number(cm[2]) !== total)) {
+  errors.push(`dashboard.html task count ${cm[1]}/${cm[2]} != JEFF-TASKS.md ${done}/${total}`);
 }
 
 // Every project card must be routed in CLAUDE.md (nothing orphaned).
@@ -64,6 +72,6 @@ if (errors.length) {
   process.exit(1);
 }
 console.log(
-  `drift check passed: views agree with source of truth (${SOURCE}) ` +
-    `on commit ${srcHash} and prices [${[...srcPrices].join(", ")}]; all cards routed.`,
+  `drift check passed: hash ${srcHash}, prices [${[...srcPrices].join(", ")}], ` +
+    `tasks ${done}/${total} — all consistent; every card routed.`,
 );

@@ -1,0 +1,14 @@
+name: drift-guard
+# Runs the command-centre drift guard on every push and pull request, so the
+# derived views can never silently disagree with the source of truth.
+on: [push, pull_request]
+jobs:
+  check-sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Run drift guard
+        run: node scripts/check-sync.js
