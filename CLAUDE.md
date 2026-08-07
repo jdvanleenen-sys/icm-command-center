@@ -8,6 +8,8 @@ The single place to see everything and route to the right shelf. This file only 
 - **OneDrive AI Systems hub** `…\Jeff's AI Docs\AI Systems` — CANONICAL. `Standing Docs\` = source of truth (read-only). Front door: `AI-SYSTEM-MAP.md`.
 - **Auto-memory** `…\.claude\projects\c--my-first-workspace\memory` — what Claude remembers across sessions.
 
+> **External to this repo:** Jeff's Brain, the OneDrive hub, and auto-memory are on Jeff's machine. The `Real docs:` pointers in each project card resolve there, not from a fresh clone. This repo ships the **map** (status + routing), not the territory.
+
 ## Routing table
 | I want to… | Open |
 |---|---|
@@ -22,7 +24,7 @@ The single place to see everything and route to the right shelf. This file only 
 | Work on Build It Once (setup kit product) | [projects/build-it-once.md](projects/build-it-once.md) |
 
 ## How this works
-- Each project file has 4 buckets: ✅ DONE · ⏳ PENDING · ❓ NEEDS-DECISION · 🔗 NEEDS-URL/ACCOUNT.
-- The project files POINT to the real docs; they never duplicate them.
-- When something changes, update the project file + STATUS.md — that IS the state. No other tracker.
-- "Automatic" (phase 2): once this is stable, a scheduled agent can refresh STATUS.md and run hygiene. See [projects/marketing.md](projects/marketing.md) note on automation.
+- **`projects/*.md` are the single source of truth.** `STATUS.md`, `JEFF-TASKS.md`, and `dashboard.html` are **derived views** — regenerate them from the cards; never hand-edit a shared fact (a commit hash, a price) in a view without updating the card and the other views.
+- Each project card has 4 buckets: ✅ DONE · ⏳ PENDING · ❓ NEEDS-DECISION · 🔗 NEEDS-URL/ACCOUNT, and POINTS to its real docs (it never copies them).
+- **Before a status change is "done," run `node scripts/check-sync.js`.** It exits non-zero if the views disagree on a shared fact or a card isn't routed here. That is the enforcement — the rule is no longer just prose.
+- Phase 2: promote check-sync into a pre-commit hook or scheduled agent so the guard runs on its own.
