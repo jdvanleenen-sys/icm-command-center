@@ -26,5 +26,5 @@ The single place to see everything and route to the right shelf. This file only 
 ## How this works
 - **`projects/*.md` are the single source of truth.** `STATUS.md`, `JEFF-TASKS.md`, and `dashboard.html` are **derived views** — regenerate them from the cards; never hand-edit a shared fact (a commit hash, a price) in a view without updating the card and the other views.
 - Each project card has 4 buckets: ✅ DONE · ⏳ PENDING · ❓ NEEDS-DECISION · 🔗 NEEDS-URL/ACCOUNT, and POINTS to its real docs (it never copies them).
-- **Before a status change is "done," run `node scripts/check-sync.js`.** It exits non-zero if the views disagree on a shared fact or a card isn't routed here. That is the enforcement — the rule is no longer just prose.
+- **Before a status change is "done," run `node scripts/check-sync.js`.** It reads the source of truth (`projects/ignite.md`) and exits non-zero if any view (STATUS/JEFF-TASKS/dashboard) disagrees with it on the Ignite commit hash or a price, or if a card isn't routed here. That is the enforcement — the rule is no longer just prose.
 - Phase 2: promote check-sync into a pre-commit hook or scheduled agent so the guard runs on its own.
