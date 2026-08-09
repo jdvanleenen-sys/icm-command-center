@@ -15,7 +15,7 @@ The single place to see everything and route to the right shelf. This file only 
 |---|---|
 | See everything at a glance | [STATUS.md](STATUS.md) |
 | See MY personal to-do list | [JEFF-TASKS.md](JEFF-TASKS.md) |
-| Know which URL/account/key I still need | [urls-and-accounts.md](urls-and-accounts.md) |
+| Know which URL/account/key I still need | `urls-and-accounts.md` — **local only, not in the repo** (account/security details stay off GitHub) |
 | Work on the Ignite launch | [projects/ignite.md](projects/ignite.md) |
 | Work on 90 to Market | [projects/90-to-market.md](projects/90-to-market.md) |
 | Work on the brand (AI the vL Way) | [projects/ai-the-vl-way.md](projects/ai-the-vl-way.md) |
