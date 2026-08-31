@@ -16,6 +16,7 @@
 | **Marketing** | 🟡 Plan done | Lock IG handle + create launch content |
 | **Vibe Coding Free Course** | 🟢 Built | Publish + drive IG traffic to /free |
 | **Build It Once** | 🟡 Revived 08-06 | Restart the 5-day launch checklist (accounts day first) |
+| **ICM Consulting** | 🟡 Pre-launch | Finish Fifth Ave reference build; confirm Roelof + pricing |
 
 ## Legend
 🟢 in good shape · 🟡 needs input/work · 🔴 blocked/at-risk

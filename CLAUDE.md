@@ -22,6 +22,7 @@ The single place to see everything and route to the right shelf. This file only 
 | Work on marketing | [projects/marketing.md](projects/marketing.md) |
 | Work on the free vibe coding course | [projects/vibe-coding-course.md](projects/vibe-coding-course.md) |
 | Work on Build It Once (setup kit product) | [projects/build-it-once.md](projects/build-it-once.md) |
+| Work on ICM Consulting (Calgary SMB setup) | [projects/icm-consulting.md](projects/icm-consulting.md) |
 
 ## How this works
 - **`projects/*.md` are the single source of truth.** `STATUS.md`, `JEFF-TASKS.md`, and `dashboard.html` are **derived views** — regenerate them from the cards; never hand-edit a shared fact (a commit hash, a price) in a view without updating the card and the other views.
