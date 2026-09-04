@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Command Center — live</title>
+<style>
+  :root{
+    --ground:#F7F3EE; --panel:#FFFFFF; --panel-2:#EFE7DC;
+    --navy:#14314F; --navy-2:#0E2740; --ink:#14314F; --ink-soft:#5B6B7A;
+    --cognac:#C67A3C; --cognac-ink:#8B5628; --tint:#E7ECF3;
+    --good:#3F7D5A; --warn:#C6892F; --risk:#B4472F;
+    --line:#E2D8CA; --shadow:0 1px 2px rgba(20,49,79,.06),0 6px 20px rgba(20,49,79,.07);
+    --radius:16px;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --ground:#0E2740; --panel:#153048; --panel-2:#1B3B57;
+      --ink:#EAF1F7; --ink-soft:#9DB2C4; --navy:#EAF1F7; --navy-2:#cfe0ee;
+      --cognac:#E0995A; --cognac-ink:#E8A867; --tint:#1B3B57;
+      --good:#68B08A; --warn:#E0B15C; --risk:#E08066;
+      --line:#26445e; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.28);
+    }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ground);color:var(--ink);
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:clamp(20px,4vw,44px) clamp(16px,4vw,32px) 64px}
+  .eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:700;color:var(--cognac-ink)}
+  h1{font-size:clamp(26px,5vw,36px);margin:.15em 0 .1em;letter-spacing:-.02em;color:var(--navy)}
+  .sub{color:var(--ink-soft);font-size:14px;margin:0}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:8px;font-size:12.5px;color:var(--ink-soft)}
+  .meta b{color:var(--ink)}
+  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--good);margin-right:5px}
+  section{margin-top:30px}
+  .sectitle{display:flex;align-items:baseline;gap:10px;margin:0 0 12px;font-size:13px;
+    text-transform:uppercase;letter-spacing:.14em;font-weight:700;color:var(--ink-soft)}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:16px 16px 14px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
+  .card h3{margin:0;font-size:16px;color:var(--navy);letter-spacing:-.01em}
+  .card .line{color:var(--ink-soft);font-size:13px;margin:0}
+  .chip{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;
+    padding:3px 9px;border-radius:999px;white-space:nowrap;width:fit-content}
+  .chip::before{content:"";width:7px;height:7px;border-radius:50%}
+  .chip.green{background:color-mix(in srgb,var(--good) 16%,transparent);color:var(--good)}
+  .chip.green::before{background:var(--good)}
+  .chip.amber{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
+  .chip.amber::before{background:var(--warn)}
+  .chip.red{background:color-mix(in srgb,var(--risk) 16%,transparent);color:var(--risk)}
+  .chip.red::before{background:var(--risk)}
+  .items{list-style:none;margin:2px 0 0;padding:0;display:grid;gap:5px}
+  .items li{display:flex;gap:7px;font-size:12.5px;align-items:flex-start;color:var(--ink)}
+  .tag{flex:0 0 auto;font-size:9.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
+    padding:2px 6px;border-radius:5px;margin-top:1px}
+  .tag.p{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
+  .tag.d{background:var(--tint);color:var(--navy)}
+  .tag.u{background:color-mix(in srgb,var(--cognac) 22%,transparent);color:var(--cognac-ink)}
+  .updated{font-size:11px;color:var(--ink-soft)}
+
+  .tasklist{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
+    padding:14px 16px;box-shadow:var(--shadow);margin-bottom:12px}
+  .tasklist h4{margin:0 0 8px;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft)}
+  .task{display:flex;gap:10px;align-items:flex-start;padding:6px 0;font-size:14px;border-top:1px solid var(--line)}
+  .task:first-of-type{border-top:none}
+  .task input{margin-top:3px;width:16px;height:16px;accent-color:var(--good);cursor:pointer;flex:0 0 auto}
+  .task label{cursor:pointer}
+  .task.done label{color:var(--ink-soft);text-decoration:line-through}
+
+  .empty{color:var(--ink-soft);font-size:13px;padding:20px 0}
+  .err{color:var(--risk);font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">AI the vL Way · Command Center</div>
+    <h1>The whole board, live</h1>
+    <p class="sub">Reads projects/*.md and JEFF-TASKS.md straight off disk. Check a box below and it writes back to the real file — nothing here is a snapshot.</p>
+    <div class="meta">
+      <span><span class="dot" id="live-dot"></span><b id="live-status">connecting…</b></span>
+      <span>Source: <code>command-center/projects/</code> + <code>JEFF-TASKS.md</code></span>
+    </div>
+  </header>
+
+  <section>
+    <div class="sectitle">Your tasks — click to check off</div>
+    <div id="tasks"></div>
+  </section>
+
+  <section>
+    <div class="sectitle">Project board</div>
+    <div class="grid" id="board"></div>
+  </section>
+</div>
+
+<script>
+async function loadTasks() {
+  const res = await fetch('/api/tasks');
+  const sections = await res.json();
+  const root = document.getElementById('tasks');
+  root.innerHTML = '';
+  if (!sections.length) { root.innerHTML = '<div class="empty">No checkbox items found in JEFF-TASKS.md.</div>'; return; }
+  for (const sec of sections) {
+    const box = document.createElement('div');
+    box.className = 'tasklist';
+    const h = document.createElement('h4');
+    h.textContent = sec.heading;
+    box.appendChild(h);
+    for (const item of sec.items) {
+      const row = document.createElement('div');
+      row.className = 'task' + (item.checked ? ' done' : '');
+      const id = 'task-' + item.lineIndex;
+      row.innerHTML = '<input type="checkbox" id="' + id + '" ' + (item.checked ? 'checked' : '') + '>' +
+        '<label for="' + id + '"></label>';
+      row.querySelector('label').textContent = item.text;
+      row.querySelector('input').addEventListener('change', () => toggle(item.lineIndex));
+      box.appendChild(row);
+    }
+    root.appendChild(box);
+  }
+}
+
+async function toggle(lineIndex) {
+  await fetch('/api/tasks/toggle', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ lineIndex })
+  });
+  loadTasks();
+}
+
+function bulletList(items, tagClass, tagLabel) {
+  if (!items.length) return '';
+  return '<ul class="items">' + items.map(t =>
+    '<li><span class="tag ' + tagClass + '">' + tagLabel + '</span>' + escapeHtml(t) + '</li>'
+  ).join('') + '</ul>';
+}
+function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+async function loadBoard() {
+  const res = await fetch('/api/board');
+  const projects = await res.json();
+  const root = document.getElementById('board');
+  root.innerHTML = projects.map(p => `
+    <div class="card">
+      <span class="chip ${p.chip}">${escapeHtml(p.state)}</span>
+      <h3>${escapeHtml(p.name)}</h3>
+      <p class="line">${escapeHtml(p.oneLiner)}</p>
+      ${bulletList(p.pending, 'p', 'Pending')}
+      ${bulletList(p.decisions, 'd', 'Decide')}
+      ${bulletList(p.urls, 'u', 'URL')}
+      ${p.updated ? '<div class="updated">Updated ' + escapeHtml(p.updated) + '</div>' : ''}
+    </div>
+  `).join('');
+}
+
+async function refresh() {
+  try {
+    await Promise.all([loadTasks(), loadBoard()]);
+    document.getElementById('live-status').textContent = 'live · ' + new Date().toLocaleTimeString();
+    document.getElementById('live-dot').style.background = 'var(--good)';
+  } catch (e) {
+    document.getElementById('live-status').textContent = 'connection lost — is the server still running?';
+    document.getElementById('live-dot').style.background = 'var(--risk)';
+  }
+}
+
+refresh();
+setInterval(refresh, 15000);
+window.addEventListener('focus', refresh);
+</script>
+</body>
+</html>

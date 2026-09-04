@@ -4,6 +4,7 @@
   "private": true,
   "description": "ICM command centre — cross-venture context map. `npm run check` runs the drift guard.",
   "scripts": {
-    "check": "node scripts/check-sync.js"
+    "check": "node scripts/check-sync.js",
+    "dashboard": "node server.js"
   }
 }
