@@ -23,6 +23,18 @@ The single place to see everything and route to the right shelf. This file only 
 | Work on the free vibe coding course | [projects/vibe-coding-course.md](projects/vibe-coding-course.md) |
 | Work on Build It Once (setup kit product) | [projects/build-it-once.md](projects/build-it-once.md) |
 | Work on ICM Consulting (Calgary SMB setup) | [projects/icm-consulting.md](projects/icm-consulting.md) |
+| Work on the festival film (The Christmas Wish) | [projects/festival-film.md](projects/festival-film.md) |
+| Work on the Christmas Wish short ad | [projects/christmas-wish-short-ad.md](projects/christmas-wish-short-ad.md) |
+| Work on Clief Notes | [projects/clief-notes.md](projects/clief-notes.md) |
+| Work on the ICM explainer film | [projects/icm-film.md](projects/icm-film.md) |
+| Work on Machine Gun Rabbit | [projects/machine-gun-rabbit.md](projects/machine-gun-rabbit.md) |
+| Work on Animation Studio | [projects/animation-studio.md](projects/animation-studio.md) |
+| Work on Blob Game | [projects/blob-game.md](projects/blob-game.md) |
+| Work on the Customer Engine (Factory method) | [projects/customer-engine.md](projects/customer-engine.md) |
+| Work on the Funnel Engine (Factory method) | [projects/funnel-engine.md](projects/funnel-engine.md) |
+| Work on ICM Teacher | [projects/icm-teacher.md](projects/icm-teacher.md) |
+| Work on Production Line | [projects/production-line.md](projects/production-line.md) |
+| Work on Skill Bundles | [projects/skill-bundles.md](projects/skill-bundles.md) |
 
 ## How this works
 - **`projects/*.md` are the single source of truth.** `STATUS.md`, `JEFF-TASKS.md`, and `dashboard.html` are **derived views** — regenerate them from the cards; never hand-edit a shared fact (a commit hash, a price) in a view without updating the card and the other views.

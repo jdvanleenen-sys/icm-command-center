@@ -1,9 +1,15 @@
 ---
 project: Build It Once
-state: revived — launch checklist pending
+state: LOCATION UNVERIFIED
 updated: 2026-08-06
 ---
 # Build It Once
+**⚠ Board audit 2026-09-04: could not verify this project's files still exist.** Its docs lived at
+`AI Systems\AI the vL Way\Reference\Build-It-Once\`, and that whole "AI Systems hub" was flagged for
+retirement in `40 Factory/CONTEXT.md` (2026-08-15) — a search of current Jeff-HQ finds no
+`AI Systems` folder and no `build-it-once` files anywhere. **Needs Jeff to confirm:** did this move
+somewhere during the retirement, or is it actually lost / needs restoring from a backup? Until
+confirmed, treat the state below as unverified history, not current fact.
 First paid product: **Claude Setup Kit for builders & trades** ($, Gumroad). 43 files — four context files (ROLE/CLAUDE/CONTEXT/REFERENCES), interview-me flow, templates + 2 worked examples, 2 skills, first-week guide, PDFs. Hour-saved-or-refund guarantee.
 **Real docs:** OneDrive `AI Systems\AI the vL Way\Reference\Build-It-Once\` — LAUNCH-CHECKLIST.md (the plan), sales-page, listing-copy, gumroad-setup-sheet, walkthrough-script, BUILD-LOG. Kit itself: `AI Systems\AI the vL Way\files\build-it-once-v1.0\`.
 

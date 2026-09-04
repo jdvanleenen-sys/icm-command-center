@@ -1,25 +1,23 @@
 ---
 project: 90 to Market
-state: ready-on-deck
-updated: 2026-08-04
+state: mid-pivot
+updated: 2026-08-15
 ---
 # 90 to Market
-Finishing-service venture: take near-done apps to launched. Ignite is case study #1. **Runs after the Ignite launch.**
-**Real docs:** OneDrive `90 to Market\` — GO-NO-GO-v2, deep research, RELEASE-PLAN, GO-LIVE-RUNBOOK, `assets\` (offer, cohort, DoD, intake, emails — all vL-navy branded).
+A service that takes vibe-coded apps to a guaranteed security standard, ships them live, keeps them running. **Pivoted 2026-08-15** — the SaaS/cohort plan below is superseded: `teardown-and-plan.md` is now the CURRENT plan — **SaaS torn down, build the method-as-course first (v1)**.
+**Real docs:** Jeff-HQ OneDrive `10 Ventures\90-to-market\CONTEXT.md` (read this first — it's the map) → `teardown-and-plan.md` (current plan), `GO-NO-GO-v2-2026-08.md` (latest go/no-go), `finishing-method-v0.md` (the step-by-step method, skeleton, prove-by-doing).
 
 ## ✅ DONE
-- Data-validated GO (repositioned: wedge = distribution + Ignite proof + DoD + non-technical-first)
-- All branded assets built: offer/pricing, cohort sales page, Definition-of-Done, intake checklist, cohort outline + launch email + nurture sequence
-
-## ✅ Pre-launch list building (live once Ignite publishes)
-- Ignite's free vibe-coding course (`/free`) ends with a **90 to Market waitlist** → captures builder emails into the `leads` table (source `90tm-waitlist`) before launch. Vibe coding = 90tM's audience, so this seeds the right warm list.
+- Data-validated GO (wedge = distribution + Ignite proof + productized DoD + non-technical-first)
+- Branded assets built: offer/pricing, cohort sales page, Definition-of-Done, intake checklist, cohort outline + launch email + nurture sequence (built pre-pivot — may need a pass against the new plan)
 
 ## ⏳ PENDING
-- Paused behind Ignite (Ignite must launch first as the proof)
-- Wire CTAs (currently placeholder "CHANGE-ME") once Cal + Stripe links exist
+- Build `ROLE.md` (web-app security standard for vibe-coded apps) — **warranted, not yet built**; needed before the first paid guarantee since the business promises a security standard
+- Prove `finishing-method-v0.md` by doing it once
+- `clients/` is empty — no pilot yet
 
 ## ❓ NEEDS-DECISION
-- Cohort price, number of seats, start date
+- Whether the pre-pivot branded assets (cohort price/seats, CTAs) still apply to the method-as-course plan, or need a rewrite
 - Pilot agreement (needs legal review)
 
 ## 🔗 NEEDS-URL / ACCOUNT

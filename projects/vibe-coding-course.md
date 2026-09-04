@@ -6,6 +6,7 @@ updated: 2026-08-04
 # Vibe Coding Free Course
 The free, email-gated **3-lesson** course — top-of-funnel lead magnet for the whole AI-the-vL-Way world. Teaches the real **two-AI method** (plan with any LLM → build in Lovable → iterate), hands out **copy-paste starter prompts**, and gets total beginners to an "I built + shared something" win.
 Lives in the Ignite app at **`/free`**. Editable source: `C:\Jeff's Brain\Ignite AI Academy\launch\VIBE-CODING-FREE-COURSE.md`.
+**⚠ Board audit 2026-09-04:** a second `VIBE-CODING-FREE-COURSE.md` also exists at `10 Ventures\vibe-coding-course\` (no CONTEXT.md there) — confirm with Jeff whether that's the same content synced/copied, or a drifted duplicate.
 
 ## ✅ DONE
 - 3 lessons, tool-agnostic: **Two AIs → Idea→Prompt→App → Iterate & Ship**

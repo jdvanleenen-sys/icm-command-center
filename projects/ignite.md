@@ -21,6 +21,11 @@ First case-study app for the 90-to-Market method. AI-learning subscription for b
 - ~~Build the in-app "vibe-coding" free lesson lead magnet~~ ✅ BUILT (`/free`, email-gated → trial CTA, `leads` table) — pending publish
 - Turn on Leaked Password Protection + 2FA (see [urls-and-accounts.md](../urls-and-accounts.md))
 
+## ⚠ OPEN RISK (self-flagged in `10 Ventures/ignite-ai-academy/CONTEXT.md`, updated 2026-08-15)
+- The app codebase lives **only** at `C:\Jeff's Brain\Ignite AI Academy\` — one local disk, not a git repo with a remote
+- That tree has a **committed `.env` with a leaked secret** — unresolved as of the CONTEXT.md's last update
+- Fix both together: private git remote + strip `.env` from history + rotate the secret. A backup snapshot exists at `_backup-2026-08-15/Jeff's Brain/` but that's a safety net, not a fix.
+
 ## ❓ NEEDS-DECISION
 - Payout schedule: manual (current) → daily/weekly?
 - Custom domain name for Ignite

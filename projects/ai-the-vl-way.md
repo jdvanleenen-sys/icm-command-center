@@ -5,7 +5,7 @@ updated: 2026-08-06
 ---
 # AI the vL Way
 The overall brand and course — the umbrella everything else sits under. Ignite and 90-to-Market are ventures *inside* it.
-**Real docs:** `AI-the-vL-Way-Complete-Brand-Package.md` (brand guide) · OneDrive AI Systems hub `AI-SYSTEM-MAP.md` (system front door) · workspace `learning/` + `playbooks/`.
+**Real docs (path updated 2026-09-04 board audit):** `90 Jeff Standards\brand-ai-the-vl-way.md` — the old `AI Systems\AI the vL Way\Reference\` path this card used to cite no longer exists; that hub was retired. The original brand-package doc is archived at `_archive\5ap-it-personal-brand-originals-2026-08-25\AI-the-vL-Way-Complete-Brand-Package.md` if history is needed.
 
 ## ✅ DONE
 - Brand package current: **secondary changed teal → navy #14314F** (RGB 20,49,79); palette (Cognac #C67A3C, Deep Navy, Warm White #F7F3EE); voice; CTA contrast rule (Cognac Dark #8B5628 for white text)

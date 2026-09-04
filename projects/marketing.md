@@ -5,7 +5,7 @@ updated: 2026-08-04
 ---
 # Marketing (cross-cutting)
 Currently focused on the Ignite launch. Instagram-led, cold-start, $0 budget.
-**Real doc:** `C:\Jeff's Brain\Ignite AI Academy\launch\MARKETING-PLAN.md`.
+**Real doc:** `C:\Jeff's Brain\Ignite AI Academy\launch\MARKETING-PLAN.md` — confirmed this path still exists (2026-09-04 board audit).
 
 ## ✅ DONE
 - Full launch marketing plan written (4 content pillars, cold-start seeding, first-week calendar, honest expectations)
