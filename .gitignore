@@ -1,2 +1,4 @@
 urls-and-accounts.md
 server.log
+scripts/.nightly-state.json
+scripts/logs/

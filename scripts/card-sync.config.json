@@ -1,0 +1,5 @@
+{
+  "hqRoot": "C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ",
+  "roots": ["10 Ventures", "40 Factory", "30 Work/work"],
+  "ignore": ["10 Ventures/_ventures-graph", "40 Factory/_backups"]
+}

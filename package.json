@@ -5,6 +5,8 @@
   "description": "ICM command centre — cross-venture context map. `npm run check` runs the drift guard.",
   "scripts": {
     "check": "node scripts/check-sync.js",
-    "dashboard": "node server.js"
+    "dashboard": "node server.js",
+    "test": "node --test \"scripts/*.test.mjs\"",
+    "cards:check": "node scripts/card-sync.mjs --dry-run"
   }
 }
