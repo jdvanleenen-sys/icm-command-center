@@ -24,6 +24,9 @@
 | **Build It Once** | ❓ Location unverified | Confirm files still exist post AI-Systems-hub retirement |
 | **Clief Notes** | 🟢 Ongoing library | No action — passive, receives content as built elsewhere |
 | **Machine Gun Rabbit** | 🟡 Split across two places | Consolidate to one location |
+| **AI Venture Strategist** | 🆕 New | Auto-created 2026-09-23: set description, state and next action → [card](projects/ai-venture-strategist.md) |
+| **Build Don't Rent** | 🆕 New | Auto-created 2026-09-23: set description, state and next action → [card](projects/build-dont-rent.md) |
+| **The School** | 🆕 New | Auto-created 2026-09-23: set description, state and next action → [card](projects/business-plan.md) |
 
 ## Project board — 40 Factory
 | Project | State | The one thing blocking progress |
@@ -35,6 +38,8 @@
 | **Blob Game** | 🟢 In progress | 4 of 8 levels built — next 4 + secret level |
 | **Animation Studio** | 🟡 Stalled since mid-Aug | No stated next step — confirm still wanted or park it |
 | **Skill Bundles** | 🟢 Ongoing library | No status file exists — consider adding one if this needs tracking |
+| **Ai The Vl Way Talk** | 🆕 New | Auto-created 2026-09-23: set description, state and next action → [card](projects/ai-the-vl-way-talk.md) |
+| **Remotion Video Machine** | 🆕 New | Auto-created 2026-09-23: set description, state and next action → [card](projects/remotion-video-machine.md) |
 
 ## Legend
 🟢 in good shape · 🟡 needs input/work · 🔴 blocked/at-risk · ❓ unverified, needs Jeff to confirm reality

@@ -35,6 +35,11 @@ The single place to see everything and route to the right shelf. This file only 
 | Work on ICM Teacher | [projects/icm-teacher.md](projects/icm-teacher.md) |
 | Work on Production Line | [projects/production-line.md](projects/production-line.md) |
 | Work on Skill Bundles | [projects/skill-bundles.md](projects/skill-bundles.md) |
+| Work on AI Venture Strategist | [projects/ai-venture-strategist.md](projects/ai-venture-strategist.md) |
+| Work on Build Don't Rent | [projects/build-dont-rent.md](projects/build-dont-rent.md) |
+| Work on The School | [projects/business-plan.md](projects/business-plan.md) |
+| Work on Ai The Vl Way Talk | [projects/ai-the-vl-way-talk.md](projects/ai-the-vl-way-talk.md) |
+| Work on Remotion Video Machine | [projects/remotion-video-machine.md](projects/remotion-video-machine.md) |
 
 ## How this works
 - **`projects/*.md` are the single source of truth.** `STATUS.md`, `JEFF-TASKS.md`, and `dashboard.html` are **derived views** — regenerate them from the cards; never hand-edit a shared fact (a commit hash, a price) in a view without updating the card and the other views.
