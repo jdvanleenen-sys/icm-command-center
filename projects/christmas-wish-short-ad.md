@@ -1,7 +1,7 @@
 ---
 project: Christmas Wish Short Ad
 state: done
-updated: 2026-08-24
+updated: 2026-09-23
 ---
 # Christmas Wish Short Ad
 30–60s Adathon ad recut from festival-film assets, for Fifth Avenue Homes.
@@ -9,6 +9,7 @@ updated: 2026-08-24
 
 ## ✅ DONE
 - **Submitted 2026-08-24** — final file confirmed present in `FINAL/`
+- Re-confirmed submitted by Jeff 2026-09-23 — closed, no further action
 
 ## ⏳ PENDING
 - none

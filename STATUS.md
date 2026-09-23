@@ -1,17 +1,18 @@
 # 🧭 STATUS — the whole board
-*Last updated 2026-09-04 (by Claude, full re-audit — the board was 4 weeks stale and missing 12 of 19 active projects). This is the at-a-glance view. Click any project for detail.*
+*Last updated 2026-09-23 — Festival Film + Christmas Wish Short Ad both re-confirmed submitted by Jeff. 2026-09-14 — Festival Film (The Christmas Wish) marked submitted/done per Jeff. Prior full re-audit 2026-09-04 (by Claude — the board was 4 weeks stale and missing 12 of 19 active projects). This is the at-a-glance view. Click any project for detail.*
 *Your personal to-dos live in [JEFF-TASKS.md](JEFF-TASKS.md) — the one list of things only you can do.*
 
 ## 🔥 DO FIRST — surfaced by this audit
-1. **Watch the festival-film v14 silent cut.** Working deadline (Aug 31 PT) has already passed. Nothing on that project moves until you watch `stages/05_assembly/output/FULL-v14/The-Christmas-Wish-FULL-v14-silent.mp4` and it gets a new deadline or ships. → [detail](projects/festival-film.md)
-2. **Ignite has a live leaked-secret risk** — committed `.env` in a codebase that only exists on one local disk, no git remote. Not urgent-feeling, but it's the kind of thing that's cheap to fix now and expensive later. → [detail](projects/ignite.md)
-3. **Publish Ignite** in Lovable (commit `923542c4`) — carries the fix for the unclickable hero buttons. Nothing in the Ignite/90tM/Vibe-Coding funnel launches until this is done.
-4. **Confirm Build It Once isn't actually lost.** Its docs lived in the "AI Systems" hub, which was retired 2026-08-15 — no trace of it found anywhere in current Jeff-HQ. Might just need a path fix, might need restoring from `_backup-2026-08-15\`. → [detail](projects/build-it-once.md)
+1. **Ignite has a live leaked-secret risk** — committed `.env` in a codebase that only exists on one local disk, no git remote. Not urgent-feeling, but it's the kind of thing that's cheap to fix now and expensive later. → [detail](projects/ignite.md)
+2. **Publish Ignite** in Lovable (commit `923542c4`) — carries the fix for the unclickable hero buttons. Nothing in the Ignite/90tM/Vibe-Coding funnel launches until this is done.
+3. **Confirm Build It Once isn't actually lost.** Its docs lived in the "AI Systems" hub, which was retired 2026-08-15 — no trace of it found anywhere in current Jeff-HQ. Might just need a path fix, might need restoring from `_backup-2026-08-15\`. → [detail](projects/build-it-once.md)
+
+*(Festival Film — The Christmas Wish — cleared this list: submitted to the Higgsfield festival 2026-09-14.)*
 
 ## Project board — 10 Ventures
 | Project | State | The one thing blocking progress |
 |---|---|---|
-| **Festival Film** (The Christmas Wish) | 🔴 Blocked on you | Deadline passed — watch v14 cut, get a new date |
+| **Festival Film** (The Christmas Wish) | 🟢 Done | Submitted to the Higgsfield festival 2026-09-14 — awaiting judging (shortlist ~Sept 24) |
 | **Christmas Wish Short Ad** | 🟢 Done | Submitted 2026-08-24 — nothing pending |
 | **Ignite AI Academy** | 🟡 Launch-ready + open risk | Publish + test purchase (yours) · unrotated leaked secret (see above) |
 | **90 to Market** | 🟡 Mid-pivot | SaaS torn down 2026-08-15; build the method-as-course first — old cohort-launch tasks below are superseded |
@@ -39,7 +40,7 @@
 🟢 in good shape · 🟡 needs input/work · 🔴 blocked/at-risk · ❓ unverified, needs Jeff to confirm reality
 
 ## Snapshot per project
-**Festival Film (The Christmas Wish)** — Silent cut v14 fully assembled. ⏳ You watch it, then text/score/final assemble/submit. Working deadline already passed (Aug 31 PT) — needs a decision either way. → [detail](projects/festival-film.md)
+**Festival Film (The Christmas Wish)** — 🟢 **Submitted to the Higgsfield Global Film Festival 2026-09-14** (per Jeff). Picture + orchestral score + child VO + end card finished in CapCut, assembled in Higgsfield Cinema Studio. ⏳ Awaiting judging (shortlist ~Sept 24, winners early Oct). 🔗 still need to file the submission-confirmation / public-post URL as falsifiable proof. → [detail](projects/festival-film.md)
 
 **Christmas Wish Short Ad** — 30-60s Adathon recut of festival-film assets. Submitted 2026-08-24, final file confirmed present. → [detail](projects/christmas-wish-short-ad.md)
 
