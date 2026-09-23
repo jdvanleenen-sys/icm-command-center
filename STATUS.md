@@ -38,7 +38,7 @@
 | **Blob Game** | 🟢 In progress | 4 of 8 levels built — next 4 + secret level |
 | **Animation Studio** | 🟡 Stalled since mid-Aug | No stated next step — confirm still wanted or park it |
 | **Skill Bundles** | 🟢 Ongoing library | No status file exists — consider adding one if this needs tracking |
-| **Ai The Vl Way Talk** | 🆕 New | Auto-created 2026-09-23: set description, state and next action → [card](projects/ai-the-vl-way-talk.md) |
+| **AI the vL Way Talk** | 🆕 New | Auto-created 2026-09-23: set description, state and next action → [card](projects/ai-the-vl-way-talk.md) |
 | **Remotion Video Machine** | 🆕 New | Auto-created 2026-09-23: set description, state and next action → [card](projects/remotion-video-machine.md) |
 
 ## Legend

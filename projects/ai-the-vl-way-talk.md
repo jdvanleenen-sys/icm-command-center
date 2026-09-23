@@ -1,10 +1,10 @@
 ---
-project: Ai The Vl Way Talk
+project: AI the vL Way Talk
 state: new
 updated: 2026-09-23
 folder: 40 Factory/ai-the-vl-way-talk
 ---
-# Ai The Vl Way Talk
+# AI the vL Way Talk
 Starter card, auto-created 2026-09-23 by the nightly board job because this folder had no card.
 **Real docs:** Jeff-HQ OneDrive — `40 Factory\ai-the-vl-way-talk\`.
 

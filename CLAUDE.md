@@ -38,7 +38,7 @@ The single place to see everything and route to the right shelf. This file only 
 | Work on AI Venture Strategist | [projects/ai-venture-strategist.md](projects/ai-venture-strategist.md) |
 | Work on Build Don't Rent | [projects/build-dont-rent.md](projects/build-dont-rent.md) |
 | Work on The School | [projects/business-plan.md](projects/business-plan.md) |
-| Work on Ai The Vl Way Talk | [projects/ai-the-vl-way-talk.md](projects/ai-the-vl-way-talk.md) |
+| Work on AI the vL Way Talk | [projects/ai-the-vl-way-talk.md](projects/ai-the-vl-way-talk.md) |
 | Work on Remotion Video Machine | [projects/remotion-video-machine.md](projects/remotion-video-machine.md) |
 
 ## How this works
