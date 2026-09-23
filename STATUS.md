@@ -40,7 +40,7 @@
 🟢 in good shape · 🟡 needs input/work · 🔴 blocked/at-risk · ❓ unverified, needs Jeff to confirm reality
 
 ## Snapshot per project
-**Festival Film (The Christmas Wish)** — 🟢 **Submitted to the Higgsfield Global Film Festival 2026-09-14** (per Jeff). Picture + orchestral score + child VO + end card finished in CapCut, assembled in Higgsfield Cinema Studio. ⏳ Awaiting judging (shortlist ~Sept 24, winners early Oct). 🔗 still need to file the submission-confirmation / public-post URL as falsifiable proof. → [detail](projects/festival-film.md)
+**Festival Film (The Christmas Wish)** — 🟢 **Submitted to the Higgsfield Global Film Festival 2026-09-14** (per Jeff). Picture + orchestral score + child VO + end card finished in CapCut, assembled in Higgsfield Cinema Studio. ⏳ Awaiting judging (shortlist ~Sept 24, winners early Oct). → [detail](projects/festival-film.md)
 
 **Christmas Wish Short Ad** — 30-60s Adathon recut of festival-film assets. Submitted 2026-08-24, final file confirmed present. → [detail](projects/christmas-wish-short-ad.md)
 

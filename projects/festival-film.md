@@ -21,4 +21,4 @@ updated: 2026-09-23
 - none
 
 ## 🔗 NEEDS-URL / ACCOUNT
-- **Submission confirmation + public post URL** — file the actual link here as falsifiable proof of entry (state claims must cite something Jeff can open; right now this rests on Jeff's word)
+- none (no public submission link exists; entry confirmed by Jeff 2026-09-23)
