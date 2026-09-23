@@ -2,6 +2,7 @@
 project: Customer Engine
 state: method-active
 updated: 2026-08-22
+folder: 40 Factory/customer-engine
 ---
 # Customer Engine
 Factory pipeline (Hormozi Crowd→Offer→Lead Magnet→Channels→Sale→Loop) for building any venture's offer.

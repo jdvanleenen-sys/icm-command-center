@@ -2,6 +2,7 @@
 project: Clief Notes
 state: ongoing-library
 updated: 2026-08-15
+folder: 10 Ventures/clief-notes
 ---
 # Clief Notes
 Archive/library venture: posts, field manuals, prompt library, workspace-blueprint, course lessons, High Tea session deliverables.

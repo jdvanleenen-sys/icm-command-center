@@ -2,6 +2,7 @@
 project: Production Line
 state: ready-for-first-run
 updated: 2026-08-30
+folder: 40 Factory/production-line
 ---
 # Production Line
 9-stage video production pipeline for RyMac-voice videos.

@@ -2,6 +2,7 @@
 project: The Christmas Wish (Festival Film)
 state: done
 updated: 2026-09-23
+folder: 10 Ventures/festival-film
 ---
 # The Christmas Wish — Festival Film
 ~4:13 film made entirely in Higgsfield for the Higgsfield Global Film Festival, Fifth Avenue Homes branded. **SUBMITTED 2026-09-14 (per Jeff's confirmation).** Re-confirmed entered by Jeff 2026-09-23. Festival deadline was **Sept 14, 11:59 PM UTC** (the earlier "Aug 31 PT" / "Sept 3 PT" notes were both wrong — the live rules page read 11:59 PM UTC Sept 14).

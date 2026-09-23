@@ -2,6 +2,7 @@
 project: Funnel Engine
 state: method-active
 updated: 2026-09-01
+folder: 40 Factory/funnel-engine
 ---
 # Funnel Engine
 Factory pipeline (Research→Hero→Page→Wiring→QA→Relationship sequence) for shipping funnels; feeds off customer-engine's offer output.

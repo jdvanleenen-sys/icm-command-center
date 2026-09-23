@@ -2,6 +2,7 @@
 project: Vibe Coding Free Course
 state: built — pending publish
 updated: 2026-08-04
+folder: 10 Ventures/vibe-coding-course
 ---
 # Vibe Coding Free Course
 The free, email-gated **3-lesson** course — top-of-funnel lead magnet for the whole AI-the-vL-Way world. Teaches the real **two-AI method** (plan with any LLM → build in Lovable → iterate), hands out **copy-paste starter prompts**, and gets total beginners to an "I built + shared something" win.

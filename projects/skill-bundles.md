@@ -2,6 +2,7 @@
 project: Skill Bundles
 state: ongoing-library
 updated: 2026-09-02
+folder: 40 Factory/skill-bundles
 ---
 # Skill Bundles
 Flat library of packaged `.skill` files: icm-architect, wayfinder-cartographer, skill-diagnostician, team-graph, workflow-audit, system-hygiene, project-setup, 5ap-cost-to-complete, 5ap-meeting-os.

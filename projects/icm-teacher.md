@@ -2,6 +2,7 @@
 project: ICM Teacher
 state: in-progress
 updated: 2026-09-04
+folder: 40 Factory/icm-teacher
 ---
 # ICM Teacher
 Interactive tool that teaches ICM's core idea.

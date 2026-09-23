@@ -2,6 +2,7 @@
 project: Animation Studio
 state: proof-of-concept
 updated: 2026-08-15
+folder: 40 Factory/animation-studio
 ---
 # Animation Studio
 Factory pipeline: Illustrator/Figma SVG → animated component. One built example (neutral character + interactive preview).

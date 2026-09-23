@@ -2,6 +2,7 @@
 project: ICM Consulting
 state: pre-launch
 updated: 2026-08-30
+folder: 10 Ventures/icm-consulting
 ---
 # ICM Consulting
 Consulting venture (Jeff + Roelof, likely): set up Calgary small businesses with a proper ICM folder system so their AI can read their operation, then get paid to fix what a market-research report surfaces. Land-and-expand. Working name — rename when branded.

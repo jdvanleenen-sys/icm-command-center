@@ -2,6 +2,7 @@
 project: Machine Gun Rabbit
 state: ongoing-archive
 updated: 2026-08-15
+folder: 10 Ventures/machine-gun-rabbit
 ---
 # Machine Gun Rabbit
 Jeff's band — content home for artwork and social posts.

@@ -2,6 +2,7 @@
 project: 90 to Market
 state: mid-pivot
 updated: 2026-08-15
+folder: 10 Ventures/90-to-market
 ---
 # 90 to Market
 A service that takes vibe-coded apps to a guaranteed security standard, ships them live, keeps them running. **Pivoted 2026-08-15** — the SaaS/cohort plan below is superseded: `teardown-and-plan.md` is now the CURRENT plan — **SaaS torn down, build the method-as-course first (v1)**.

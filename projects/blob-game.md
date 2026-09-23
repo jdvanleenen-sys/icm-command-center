@@ -2,6 +2,7 @@
 project: Blob Game
 state: in-progress
 updated: 2026-08-29
+folder: 40 Factory/blob-game
 ---
 # Blob Game
 2D pixel-art platformer, built with Ari (Jeff's kid).

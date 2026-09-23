@@ -2,6 +2,7 @@
 project: ICM Film (explainer)
 state: blocked-on-jeff
 updated: 2026-08-20
+folder: 10 Ventures/icm-film
 ---
 # ICM Film
 ~30s explainer animation on ICM's core idea.

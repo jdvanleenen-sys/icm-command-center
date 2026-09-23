@@ -3,6 +3,7 @@ project: Ignite AI Academy
 state: launch-ready
 launch_target: 2026-08-05
 updated: 2026-08-04
+folder: 10 Ventures/ignite-ai-academy
 ---
 # Ignite AI Academy
 First case-study app for the 90-to-Market method. AI-learning subscription for beginners. Launching to the web first; app stores later.
