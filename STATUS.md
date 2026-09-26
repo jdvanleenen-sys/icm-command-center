@@ -26,12 +26,12 @@
 | **Machine Gun Rabbit** | 🟡 Split across two places | Consolidate to one location |
 | **AI Venture Strategist** | 🆕 New | Auto-created 2026-09-23: set description, state and next action → [card](projects/ai-venture-strategist.md) |
 | **Build Don't Rent** | 🆕 New | Auto-created 2026-09-23: set description, state and next action → [card](projects/build-dont-rent.md) |
-| **The School** | 🆕 New | Auto-created 2026-09-23: set description, state and next action → [card](projects/business-plan.md) |
+| **The School** | 🟡 Active | Decide the default 6 folder names, then rework lesson 2.1 from 5 folders to 6 → [card](projects/business-plan.md) |
 
 ## Project board — 40 Factory
 | Project | State | The one thing blocking progress |
 |---|---|---|
-| **Production Line** | 🟡 Ready for first run | Decide: custom Remotion render engine, or reuse existing path |
+| **Production Line** | 🟢 Active, test run done | Episode 2 (phone-to-Airtable, lesson 1.5): Gameplan interview, recording 2026-09-26 |
 | **ICM Teacher** | 🟡 Beginner shipped, advanced approved | Write the implementation plan for the advanced module, then build |
 | **Funnel Engine** | 🟢 Active method | Per-venture status not yet audited (check `ventures/` subfolder) |
 | **Customer Engine** | 🟢 Active method | Per-venture status not yet audited (check `ventures/` subfolder) |
@@ -70,7 +70,7 @@
 
 **Machine Gun Rabbit** — Band content home (artwork, social posts). ⏳ Currently split across two locations — consolidate. → [detail](projects/machine-gun-rabbit.md)
 
-**Production Line** — 9-stage video pipeline for RyMac-voice videos, all stages authored. ❓ Stage 07 (render engine): build custom Remotion, or reuse an existing render path. Then: first real run. → [detail](projects/production-line.md)
+**Production Line** — 9-stage video line on AI the vL Way. Episode 1 run front to back 2026-09-25 as the test run (YouTube unlisted, blog live, Skool drop posted). Next: episode 2, phone-to-Airtable, starting with the Gameplan. → [detail](projects/production-line.md)
 
 **ICM Teacher** — Beginner module shipped and live (posted to Clief Notes 2026-08-29). Advanced module design approved 2026-08-30. ⏳ Write implementation plan, then build — file was touched 2026-09-04, worth confirming with Jeff whether it's already in motion. → [detail](projects/icm-teacher.md)
 
