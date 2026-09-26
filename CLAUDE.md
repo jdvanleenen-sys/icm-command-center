@@ -40,6 +40,7 @@ The single place to see everything and route to the right shelf. This file only 
 | Work on The School | [projects/business-plan.md](projects/business-plan.md) |
 | Work on AI the vL Way Talk | [projects/ai-the-vl-way-talk.md](projects/ai-the-vl-way-talk.md) |
 | Work on Remotion Video Machine | [projects/remotion-video-machine.md](projects/remotion-video-machine.md) |
+| Work on jev-decisions | [projects/jev-decisions.md](projects/jev-decisions.md) |
 
 ## How this works
 - **`projects/*.md` are the single source of truth.** `STATUS.md`, `JEFF-TASKS.md`, and `dashboard.html` are **derived views** — regenerate them from the cards; never hand-edit a shared fact (a commit hash, a price) in a view without updating the card and the other views.

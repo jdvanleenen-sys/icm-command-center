@@ -40,6 +40,7 @@
 | **Skill Bundles** | 🟢 Ongoing library | No status file exists — consider adding one if this needs tracking |
 | **AI the vL Way Talk** | 🆕 New | Auto-created 2026-09-23: set description, state and next action → [card](projects/ai-the-vl-way-talk.md) |
 | **Remotion Video Machine** | 🆕 New | Auto-created 2026-09-23: set description, state and next action → [card](projects/remotion-video-machine.md) |
+| **jev-decisions** | 🆕 New | Auto-created 2026-09-25: set description, state and next action → [card](projects/jev-decisions.md) |
 
 ## Legend
 🟢 in good shape · 🟡 needs input/work · 🔴 blocked/at-risk · ❓ unverified, needs Jeff to confirm reality
