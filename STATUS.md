@@ -27,6 +27,7 @@
 | **AI Venture Strategist** | 🆕 New | Auto-created 2026-09-23: set description, state and next action → [card](projects/ai-venture-strategist.md) |
 | **Build Don't Rent** | 🆕 New | Auto-created 2026-09-23: set description, state and next action → [card](projects/build-dont-rent.md) |
 | **The School** | 🟡 Active | Decide the default 6 folder names, then rework lesson 2.1 from 5 folders to 6 → [card](projects/business-plan.md) |
+| **Idea Engine** | 🆕 New | Auto-created 2026-09-26: set description, state and next action → [card](projects/idea-engine.md) |
 
 ## Project board — 40 Factory
 | Project | State | The one thing blocking progress |
