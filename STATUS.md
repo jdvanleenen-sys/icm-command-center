@@ -32,7 +32,7 @@
 ## Project board — 40 Factory
 | Project | State | The one thing blocking progress |
 |---|---|---|
-| **Production Line** | 🟢 Active, test run done | Episode 2 (phone-to-Airtable, lesson 1.5): Gameplan interview, recording 2026-09-26 |
+| **Production Line** | 🟢 Active | Skool About video built overnight: Jeff records 2 phone clips + the VO. Episode 2 ready to publish |
 | **ICM Teacher** | 🟡 Beginner shipped, advanced approved | Write the implementation plan for the advanced module, then build |
 | **Funnel Engine** | 🟢 Active method | Per-venture status not yet audited (check `ventures/` subfolder) |
 | **Customer Engine** | 🟢 Active method | Per-venture status not yet audited (check `ventures/` subfolder) |

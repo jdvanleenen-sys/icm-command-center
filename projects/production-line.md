@@ -1,7 +1,7 @@
 ---
 project: Production Line
 state: active
-updated: 2026-09-26
+updated: 2026-09-27
 folder: 40 Factory/production-line
 ---
 # Production Line
@@ -15,7 +15,8 @@ folder: 40 Factory/production-line
 - Render-engine question closed: Remotion on AWS Lambda
 
 ## ⏳ PENDING
-- **Next: episode 2, phone-to-Airtable (backlog #2), recording 2026-09-26.** Starts with the Gameplan interview; no stage skipped. Becomes free Skool lesson 1.5 "Hook Up Your Phone"
+- **Skool About video "The Second Shift" (backlog #8), built overnight 2026-09-27.** Script v4 locked, spec, reader (gate PASS), 8-bit animation, 3 test passes (`production/skool-about/BUILD-LOG.md`). **Jeff next:** watch the silent draft, record 2 phone clips, record the VO. Then align, 90s on Lambda, final
+- Episode 2 (claude-airtable, free lesson 1.5): rendered and packaged 2026-09-26; publish steps in `production/claude-airtable/07-PUBLISH-STEPS.md`
 - Episode 1 video to Public when Jeff is ready (kept unlisted by choice)
 - Upload profile picture, watermark, banner; add blog link to the ep 1 YouTube description
 - Backlog #6: tech-stack piece (Airtable vs Excel), right after #2
