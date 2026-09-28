@@ -42,6 +42,7 @@ The single place to see everything and route to the right shelf. This file only 
 | Work on Remotion Video Machine | [projects/remotion-video-machine.md](projects/remotion-video-machine.md) |
 | Work on jev-decisions | [projects/jev-decisions.md](projects/jev-decisions.md) |
 | Work on Idea Engine | [projects/idea-engine.md](projects/idea-engine.md) |
+| Work on ICM Factory, the agent-as-a-folder builder | [projects/icm-factory.md](projects/icm-factory.md) |
 
 ## How this works
 - **`projects/*.md` are the single source of truth.** `STATUS.md`, `JEFF-TASKS.md`, and `dashboard.html` are **derived views** — regenerate them from the cards; never hand-edit a shared fact (a commit hash, a price) in a view without updating the card and the other views.
