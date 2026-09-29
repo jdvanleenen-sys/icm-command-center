@@ -43,6 +43,12 @@
 | **Remotion Video Machine** | 🆕 New | Auto-created 2026-09-23: set description, state and next action → [card](projects/remotion-video-machine.md) |
 | **jev-decisions** | 🆕 New | Auto-created 2026-09-25: set description, state and next action → [card](projects/jev-decisions.md) |
 | **ICM Factory, the agent-as-a-folder builder** | 🆕 New | Auto-created 2026-09-27: set description, state and next action → [card](projects/icm-factory.md) |
+| **mailbox-autopilot** | 🆕 New | Auto-created 2026-09-28: set description, state and next action → [card](projects/mailbox-autopilot.md) |
+
+## Project board — 30 Work
+| Project | State | The one thing blocking progress |
+|---|---|---|
+| **Sage Intacct API access for 5AP** | 🆕 New | Auto-created 2026-09-28: set description, state and next action → [card](projects/sage-intacct-api.md) |
 
 ## Legend
 🟢 in good shape · 🟡 needs input/work · 🔴 blocked/at-risk · ❓ unverified, needs Jeff to confirm reality
