@@ -1,7 +1,7 @@
 ---
 project: Production Line
 state: active
-updated: 2026-09-29
+updated: 2026-09-30
 folder: 40 Factory/production-line
 ---
 # Production Line
@@ -17,7 +17,7 @@ folder: 40 Factory/production-line
 - Render-engine question closed: Remotion on AWS Lambda
 
 ## ⏳ PENDING
-- **Idea Engine short (tall, 8-bit, channel + VSL cut): reader ready 2026-09-29.** Gameplan, script v1, spec v1, scenes, silent draft (86.7s) and the reader (gate PASS) built overnight under Jeff's delegation (`production/2026-09-29-short-idea-engine/`). **Jeff next:** confirm the delegated approvals, then record from `05-VO-READER.html`
+- **Idea Engine short (tall, 8-bit, channel + VSL cut): v1 RENDERED 2026-09-30** from Jeff's take. Channel 81.0s and VSL 73.0s in `production/2026-09-29-short-idea-engine/drafts/`, all checks pass. **Jeff next:** watch both, answer the 3 gate decisions (`05-STORYBOARD-GATE.html`)
 - **Skool About video "The Second Shift": FINAL v3 approved 2026-09-28**, on the new character kit (`production/2026-09-27-page-skool-about/out/skool-about-final.mp4`, 72.3s). **Jeff next:** put it on the Skool About page (`06-PAGE.md`)
 - Episode 2 (claude-airtable, free lesson 1.5): rendered and packaged 2026-09-26; publish steps in `production/2026-09-26-episode-claude-airtable/07-PUBLISH-STEPS.md`
 - Episode 1 video to Public when Jeff is ready (kept unlisted by choice)
