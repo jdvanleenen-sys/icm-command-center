@@ -44,6 +44,7 @@
 | **jev-decisions** | 🆕 New | Auto-created 2026-09-25: set description, state and next action → [card](projects/jev-decisions.md) |
 | **ICM Factory, the agent-as-a-folder builder** | 🆕 New | Auto-created 2026-09-27: set description, state and next action → [card](projects/icm-factory.md) |
 | **mailbox-autopilot** | 🆕 New | Auto-created 2026-09-28: set description, state and next action → [card](projects/mailbox-autopilot.md) |
+| **Email & Calendar Assistant** | 🆕 New | Auto-created 2026-09-29: set description, state and next action → [card](projects/email-assistant-icm.md) |
 
 ## Project board — 30 Work
 | Project | State | The one thing blocking progress |
