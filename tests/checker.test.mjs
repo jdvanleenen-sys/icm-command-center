@@ -51,6 +51,16 @@ test('R3: refuses when a shared fact file has no stamp', () => {
   } finally { fx.cleanup(); }
 });
 
+test('R3: a unit that writes the fact file is its producer and is not held', () => {
+  const fx = makeFixture();
+  try {
+    const g = cleanProject(fx);
+    fx.file('facts.md', '# Facts\n\nno stamp here\n');
+    fs.writeFileSync(g, fs.readFileSync(g, 'utf8').replace('writes: b/', 'writes: b/, facts.md'));
+    assert.ok(!rules(fx, 'demo:b').includes('R3'));
+  } finally { fx.cleanup(); }
+});
+
 test('R4: refuses when an upstream unit returned missing facts', () => {
   const fx = makeFixture();
   try {

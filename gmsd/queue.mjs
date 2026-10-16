@@ -1,7 +1,7 @@
 // queue.mjs — the "waiting on Jeff" items, generated from the graph and the disk. Each item is
 // one question with 1 to 3 answers, and every answer maps to one action in answers.mjs.
 import path from 'node:path';
-import { depsOf } from './checker.mjs';
+import { depsOf, writesFile } from './checker.mjs';
 import { rulingItems } from './converge.mjs';
 import { readIfExists, resolvePath, toSlash } from './paths.mjs';
 import { factApproval, sha256 } from './stamps.mjs';
@@ -21,7 +21,7 @@ function factItems(world) {
   for (const u of world.units.values()) {
     if (isDone(u)) continue;
     for (const file of u.factsAbs) {
-      if (factApproval(world.home, file).ok) continue;
+      if (writesFile(u, file) || factApproval(world.home, file).ok) continue;
       const entry = seen.get(file) || { file, slug: u.slug, blocks: [] };
       entry.blocks.push(u.key);
       seen.set(file, entry);

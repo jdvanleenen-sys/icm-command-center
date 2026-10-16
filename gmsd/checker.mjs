@@ -89,8 +89,13 @@ function rulesOnDeps(world, unit) {
   return out;
 }
 
+// A unit that writes a fact file is that fact's producer, so it is not held for the file's
+// approval; its edit lapses any hash approval, which then holds every unit downstream.
+export const writesFile = (unit, file) => unit.writesAbs.some((w) => pathsOverlap(w, file));
+
 function ruleR3(world, unit) {
   return unit.factsAbs
+    .filter((file) => !writesFile(unit, file))
     .map((file) => factApproval(world.home, file))
     .filter((a) => !a.ok)
     .map((a) => refuse('R3', a.reason));

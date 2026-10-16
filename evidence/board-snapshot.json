@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-16T03:54:38.057Z",
+  "generated": "2026-10-16T03:55:30.512Z",
   "projects": [
     {
       "slug": "curriculum",
@@ -388,8 +388,7 @@
       {
         "blocks": [
           "trades-office:owner-calls",
-          "trades-office:real-jobs-audit",
-          "trades-office:unready-pain"
+          "trades-office:real-jobs-audit"
         ],
         "id": "trades-office/fact/259a8d0a99",
         "project": "trades-office",
@@ -413,7 +412,6 @@
       },
       {
         "blocks": [
-          "trades-office:run3-fixes",
           "trades-office:new-jobs-test",
           "trades-office:real-jobs-audit"
         ],
@@ -439,7 +437,6 @@
       },
       {
         "blocks": [
-          "trades-office:run3-fixes",
           "trades-office:new-jobs-test",
           "trades-office:real-jobs-audit"
         ],
@@ -465,7 +462,6 @@
       },
       {
         "blocks": [
-          "trades-office:run3-fixes",
           "trades-office:new-jobs-test",
           "trades-office:real-jobs-audit"
         ],
@@ -491,7 +487,6 @@
       },
       {
         "blocks": [
-          "trades-office:run3-fixes",
           "trades-office:new-jobs-test",
           "trades-office:real-jobs-audit"
         ],
