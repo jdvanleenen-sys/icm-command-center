@@ -5,12 +5,15 @@
 //   node gmsd/cli.mjs start <slug> <unit>    check, write the claim, print the start prompt
 //   node gmsd/cli.mjs queue                  list the open "waiting on Jeff" items
 //   node gmsd/cli.mjs answer <id> <a|b|c> [text]
+//   node gmsd/cli.mjs snapshot <file>        write the phone copy (publish it as the claude.ai page)
+//   node gmsd/cli.mjs phone-apply <json>     apply answers sent from the phone copy; prints results
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { answerItem, startUnit } from './actions.mjs';
 import { buildBoard, renderStatusMd } from './board.mjs';
 import { checkUnit } from './checker.mjs';
+import { applyPhoneAnswers, snapshotHtml } from './phone.mjs';
 import { buildWorld, keyOf } from './world.mjs';
 
 const HOME = process.env.GMSD_HOME || path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -52,6 +55,13 @@ else if (command === 'check') {
 } else if (command === 'answer') {
   const out = answerItem(HOME, args[0], args[1], args.slice(2).join(' '));
   if (!out.ok) { console.log(`ERROR: ${out.error}`); process.exitCode = 1; } else console.log(out.followUp || 'answered');
+} else if (command === 'snapshot') {
+  if (!args[0]) { console.log('ERROR: give the output file'); process.exit(2); }
+  fs.writeFileSync(args[0], snapshotHtml(HOME), 'utf8');
+  console.log(`phone copy written: ${args[0]}`);
+} else if (command === 'phone-apply') {
+  if (!args[0]) { console.log('ERROR: give the answers JSON file'); process.exit(2); }
+  console.log(JSON.stringify(applyPhoneAnswers(HOME, JSON.parse(fs.readFileSync(args[0], 'utf8'))), null, 2));
 } else {
   console.log('usage: gmsd board [--write] | check <slug> <unit> | start <slug> <unit> | queue | answer <id> <choice> [text]');
   process.exitCode = 2;
