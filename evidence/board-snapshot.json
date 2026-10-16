@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-16T03:56:51.561Z",
+  "generated": "2026-10-16T04:01:32.464Z",
   "projects": [
     {
       "slug": "curriculum",
@@ -328,13 +328,27 @@
           "reason": "R3: no \"approved by NAME on DATE\" stamp: C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ/10 Ventures/_business-plan/doctrine.md"
         },
         {
-          "key": "trades-office:run3-fixes",
-          "id": "run3-fixes",
-          "title": "Fix what run 3 showed (the action rule, empty packet sections, item 8 at apprentice with keeper.md and the ladder agreeing on the log, the 4 unclear scheduler rules)",
+          "key": "trades-office:run3-choices",
+          "id": "run3-choices",
+          "title": "Choose how run 3's fixes are made: (1) the action rule, by the starter's agent instructions in C:/GitHub/agent-workspace-starter or by a script that checks each reply; (3) item 8 at apprentice, a proposed decision counts or it always fails; (4) rows 1, 3 and 6 of critical-list.md, a source that differs from the signed scope fails item 1, a date inside the signed window agrees, and whether all 4 constraints are required and what \"power\" means",
           "owner": "",
           "refusals": [],
-          "status": "unknown",
-          "reason": "no disk marker declared (done_when: none)"
+          "status": "waiting on Jeff",
+          "reason": "Jeff makes the 3 choices"
+        },
+        {
+          "key": "trades-office:run3-fixes",
+          "id": "run3-fixes",
+          "title": "Fix what run 3 showed: the action rule (fix 1), empty packet sections (fix 2), item 8 at apprentice (fix 3; the keeper.md and ladder.md log half is already fixed), the unclear scheduler rules (fix 4)",
+          "owner": "",
+          "refusals": [
+            {
+              "rule": "R2",
+              "message": "waits on trades-office:run3-choices, which is not done (no answer yet for trades-office/run3-choices/gate)"
+            }
+          ],
+          "status": "blocked",
+          "reason": "R2: waits on trades-office:run3-choices, which is not done (no answer yet for trades-office/run3-choices/gate)"
         },
         {
           "key": "trades-office:new-jobs-test",
@@ -374,12 +388,12 @@
         }
       ],
       "counts": {
-        "blocked": 1,
-        "unknown": 3,
-        "waiting on Jeff": 2
+        "blocked": 2,
+        "waiting on Jeff": 3,
+        "unknown": 2
       },
       "nextUp": {
-        "none": "waiting on Jeff: unready-pain, to-set-numbers; first blocked: owner-calls (R3); unknown: run3-fixes, new-jobs-test, real-jobs-audit"
+        "none": "waiting on Jeff: run3-choices, unready-pain, to-set-numbers; first blocked: owner-calls (R3); unknown: new-jobs-test, real-jobs-audit"
       }
     }
   ],
@@ -554,23 +568,20 @@
         ]
       },
       {
-        "blocks": [],
-        "id": "trades-office/run3-fixes/gap",
+        "blocks": [
+          "trades-office:run3-fixes"
+        ],
+        "id": "trades-office/run3-choices/gate",
         "project": "trades-office",
-        "unit": "trades-office:run3-fixes",
-        "gate": "gap",
-        "question": "GMSD cannot read run3-fixes's state from disk (no disk marker declared (done_when: none)). What file shows it is done?",
-        "open": "C:/GitHub/command-center-gmsd/projects/trades-office/graph.md",
-        "fingerprint": "55688d5d53",
+        "unit": "trades-office:run3-choices",
+        "gate": "unit gate",
+        "question": "Choose how run 3's fixes are made: (1) the action rule, by the starter's agent instructions in C:/GitHub/agent-workspace-starter or by a script that checks each reply; (3) item 8 at apprentice, a proposed decision counts or it always fails; (4) rows 1, 3 and 6 of critical-list.md, a source that differs from the signed scope fails item 1, a date inside the signed window agrees, and whether all 4 constraints are required and what \"power\" means?",
+        "open": "C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ/10 Ventures/trades-office/tests/stage-1/results-run-3-2026-10-06.md",
+        "fingerprint": "86ae35d58a",
         "answers": [
           {
             "key": "a",
-            "label": "It is done when this exists: ___",
-            "action": "note"
-          },
-          {
-            "key": "b",
-            "label": "Drop this unit from the graph",
+            "label": "My decision: ___",
             "action": "note"
           }
         ]
