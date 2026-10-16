@@ -1,0 +1,841 @@
+{
+  "generated": "2026-10-16T03:54:38.057Z",
+  "projects": [
+    {
+      "slug": "curriculum",
+      "name": "Curriculum (its own build manager)",
+      "root": "",
+      "links": [
+        "http://localhost:5858 (npm run board in C:/GitHub/animation-build)"
+      ],
+      "problems": [],
+      "units": [],
+      "counts": {},
+      "nextUp": {
+        "none": "no units in this graph"
+      }
+    },
+    {
+      "slug": "idea-engine",
+      "name": "Idea Engine",
+      "root": "C:/GitHub/idea-engine-van-leenen",
+      "links": [],
+      "problems": [],
+      "units": [
+        {
+          "key": "idea-engine:00-contain-define",
+          "id": "00-contain-define",
+          "title": "Contain, then make the existing build safe to use",
+          "owner": "",
+          "refusals": [],
+          "status": "done",
+          "reason": "C:/GitHub/idea-engine-van-leenen/stages/00_contain-define/output/done.md approved by Jeff on 2026-09-29"
+        },
+        {
+          "key": "idea-engine:01-founder-recall",
+          "id": "01-founder-recall",
+          "title": "Founder idea recall and case inventory",
+          "owner": "unknown (started outside GMSD)",
+          "refusals": [],
+          "status": "running",
+          "reason": "branch feature/01-founder-recall exists"
+        },
+        {
+          "key": "idea-engine:oq10-host-pick",
+          "id": "oq10-host-pick",
+          "title": "Which second AI host first (open question 10, stage 01X smoke test, then stage 04)",
+          "owner": "",
+          "refusals": [],
+          "status": "waiting on Jeff",
+          "reason": "Jeff and Roelof pick the host"
+        },
+        {
+          "key": "idea-engine:01x-second-host",
+          "id": "01x-second-host",
+          "title": "Second AI host technical smoke test (runs alongside 01 and 02, blocks neither)",
+          "owner": "",
+          "refusals": [
+            {
+              "rule": "R2",
+              "message": "waits on idea-engine:oq10-host-pick, which is not done (C:/GitHub/idea-engine-van-leenen/_shared/open-questions.md contains \"(stage 01X smoke test, then stage 04) | Jeff + Roelof | open |\")"
+            }
+          ],
+          "status": "blocked",
+          "reason": "R2: waits on idea-engine:oq10-host-pick, which is not done (C:/GitHub/idea-engine-van-leenen/_shared/open-questions.md contains \"(stage 01X smoke test, then stage 04) | Jeff + Roelof | open |\")"
+        },
+        {
+          "key": "idea-engine:02-founder-cases",
+          "id": "02-founder-cases",
+          "title": "Founder cases and \"what have I tried?\" case recall",
+          "owner": "",
+          "refusals": [
+            {
+              "rule": "R2",
+              "message": "waits on idea-engine:01-founder-recall, which is not done (C:/GitHub/idea-engine-van-leenen/stages/01_founder-recall/output/done.md does not exist)"
+            },
+            {
+              "rule": "R1",
+              "message": "writes C:/GitHub/idea-engine-van-leenen/app/, which running unit idea-engine:01-founder-recall also writes (C:/GitHub/idea-engine-van-leenen/app/)"
+            }
+          ],
+          "status": "blocked",
+          "reason": "R2: waits on idea-engine:01-founder-recall, which is not done (C:/GitHub/idea-engine-van-leenen/stages/01_founder-recall/output/done.md does not exist) | R1: writes C:/GitHub/idea-engine-van-leenen/app/, which running unit idea-engine:01-founder-recall also writes (C:/GitHub/idea-engine-van-leenen/app/)"
+        },
+        {
+          "key": "idea-engine:03a-benchmark",
+          "id": "03a-benchmark",
+          "title": "Independent retrieval benchmark",
+          "owner": "",
+          "refusals": [
+            {
+              "rule": "R2",
+              "message": "waits on idea-engine:02-founder-cases, which is not done (C:/GitHub/idea-engine-van-leenen/stages/02_founder-cases/output/done.md does not exist)"
+            },
+            {
+              "rule": "R1",
+              "message": "writes C:/GitHub/idea-engine-van-leenen/app/, which running unit idea-engine:01-founder-recall also writes (C:/GitHub/idea-engine-van-leenen/app/)"
+            }
+          ],
+          "status": "blocked",
+          "reason": "R2: waits on idea-engine:02-founder-cases, which is not done (C:/GitHub/idea-engine-van-leenen/stages/02_founder-cases/output/done.md does not exist) | R1: writes C:/GitHub/idea-engine-van-leenen/app/, which running unit idea-engine:01-founder-recall also writes (C:/GitHub/idea-engine-van-leenen/app/)"
+        },
+        {
+          "key": "idea-engine:03b-outside-feasibility",
+          "id": "03b-outside-feasibility",
+          "title": "Outside-user import and product feasibility",
+          "owner": "",
+          "refusals": [
+            {
+              "rule": "R2",
+              "message": "waits on idea-engine:03a-benchmark, which is not done (C:/GitHub/idea-engine-van-leenen/stages/03a_benchmark/output/done.md does not exist)"
+            },
+            {
+              "rule": "R1",
+              "message": "writes C:/GitHub/idea-engine-van-leenen/app/, which running unit idea-engine:01-founder-recall also writes (C:/GitHub/idea-engine-van-leenen/app/)"
+            }
+          ],
+          "status": "blocked",
+          "reason": "R2: waits on idea-engine:03a-benchmark, which is not done (C:/GitHub/idea-engine-van-leenen/stages/03a_benchmark/output/done.md does not exist) | R1: writes C:/GitHub/idea-engine-van-leenen/app/, which running unit idea-engine:01-founder-recall also writes (C:/GitHub/idea-engine-van-leenen/app/)"
+        },
+        {
+          "key": "idea-engine:04-cross-host",
+          "id": "04-cross-host",
+          "title": "Real cross-host use",
+          "owner": "",
+          "refusals": [
+            {
+              "rule": "R2",
+              "message": "waits on idea-engine:03b-outside-feasibility, which is not done (C:/GitHub/idea-engine-van-leenen/stages/03b_outside-feasibility/output/done.md does not exist)"
+            },
+            {
+              "rule": "R1",
+              "message": "writes C:/GitHub/idea-engine-van-leenen/app/, which running unit idea-engine:01-founder-recall also writes (C:/GitHub/idea-engine-van-leenen/app/)"
+            }
+          ],
+          "status": "blocked",
+          "reason": "R2: waits on idea-engine:03b-outside-feasibility, which is not done (C:/GitHub/idea-engine-van-leenen/stages/03b_outside-feasibility/output/done.md does not exist) | R1: writes C:/GitHub/idea-engine-van-leenen/app/, which running unit idea-engine:01-founder-recall also writes (C:/GitHub/idea-engine-van-leenen/app/)"
+        },
+        {
+          "key": "idea-engine:05-longitudinal",
+          "id": "05-longitudinal",
+          "title": "Longitudinal value of the idea-to-attempt-to-case loop",
+          "owner": "",
+          "refusals": [
+            {
+              "rule": "R2",
+              "message": "waits on idea-engine:04-cross-host, which is not done (C:/GitHub/idea-engine-van-leenen/stages/04_cross-host/output/done.md does not exist)"
+            },
+            {
+              "rule": "R1",
+              "message": "writes C:/GitHub/idea-engine-van-leenen/app/, which running unit idea-engine:01-founder-recall also writes (C:/GitHub/idea-engine-van-leenen/app/)"
+            }
+          ],
+          "status": "blocked",
+          "reason": "R2: waits on idea-engine:04-cross-host, which is not done (C:/GitHub/idea-engine-van-leenen/stages/04_cross-host/output/done.md does not exist) | R1: writes C:/GitHub/idea-engine-van-leenen/app/, which running unit idea-engine:01-founder-recall also writes (C:/GitHub/idea-engine-van-leenen/app/)"
+        },
+        {
+          "key": "idea-engine:06-extensions",
+          "id": "06-extensions",
+          "title": "Extensions: ICM workspace drafts and the spark",
+          "owner": "",
+          "refusals": [
+            {
+              "rule": "R2",
+              "message": "waits on idea-engine:05-longitudinal, which is not done (C:/GitHub/idea-engine-van-leenen/stages/05_longitudinal/output/done.md does not exist)"
+            },
+            {
+              "rule": "R1",
+              "message": "writes C:/GitHub/idea-engine-van-leenen/app/, which running unit idea-engine:01-founder-recall also writes (C:/GitHub/idea-engine-van-leenen/app/)"
+            }
+          ],
+          "status": "blocked",
+          "reason": "R2: waits on idea-engine:05-longitudinal, which is not done (C:/GitHub/idea-engine-van-leenen/stages/05_longitudinal/output/done.md does not exist) | R1: writes C:/GitHub/idea-engine-van-leenen/app/, which running unit idea-engine:01-founder-recall also writes (C:/GitHub/idea-engine-van-leenen/app/)"
+        }
+      ],
+      "counts": {
+        "done": 1,
+        "running": 1,
+        "waiting on Jeff": 1,
+        "blocked": 7
+      },
+      "nextUp": {
+        "none": "running: 01-founder-recall; waiting on Jeff: oq10-host-pick; first blocked: 01x-second-host (R2)"
+      }
+    },
+    {
+      "slug": "the-control",
+      "name": "The Control harness",
+      "root": "C:/GitHub/the-control-icm",
+      "links": [],
+      "problems": [],
+      "units": [
+        {
+          "key": "the-control:plan-reviews",
+          "id": "plan-reviews",
+          "title": "Plan, three design reviews and one outside review by Perplexity",
+          "owner": "",
+          "refusals": [],
+          "status": "done",
+          "reason": "C:/GitHub/the-control-icm/DESIGN-LOG.md contains \"## Round 4: outside review by Perplexity\""
+        },
+        {
+          "key": "the-control:new-questions",
+          "id": "new-questions",
+          "title": "New questions written, key-checked, de-duplicated; key-fact patterns committed",
+          "owner": "",
+          "refusals": [],
+          "status": "done",
+          "reason": "C:/GitHub/the-control-icm/questions-new.md exists; C:/GitHub/the-control-icm/generator/new/key-check.md exists; C:/GitHub/the-control-icm/verify/key-facts-sets.test.mjs exists"
+        },
+        {
+          "key": "the-control:brief-practice",
+          "id": "brief-practice",
+          "title": "Practice sets copied in; the builder's brief committed and fingerprinted",
+          "owner": "",
+          "refusals": [],
+          "status": "done",
+          "reason": "C:/GitHub/the-control-icm/builder/BRIEF.md exists; C:/GitHub/the-control-icm/builder/fingerprints.txt exists; C:/GitHub/the-control-icm/practice/boat-lend/questions.md exists; C:/GitHub/the-control-icm/practice/garden-makerspace/questions.md exists; C:/GitHub/the-control-icm/practice/hall-pool/questions.md exists"
+        },
+        {
+          "key": "the-control:harness-analysis",
+          "id": "harness-analysis",
+          "title": "Harness changes and the analysis script, tested on fixtures",
+          "owner": "",
+          "refusals": [],
+          "status": "done",
+          "reason": "C:/GitHub/the-control-icm/verify/sup-verdict.test.mjs exists; C:/GitHub/the-control-icm/verify/sup-selftest.mjs exists"
+        },
+        {
+          "key": "the-control:icm-build",
+          "id": "icm-build",
+          "title": "ICM built and revised over up to five practice rounds, each logged",
+          "owner": "",
+          "refusals": [],
+          "status": "done",
+          "reason": "C:/GitHub/the-control-icm/builder/ROUNDS.md exists; C:/GitHub/the-control-icm/arms/icm/CLAUDE.md exists"
+        },
+        {
+          "key": "the-control:live-list-checks",
+          "id": "live-list-checks",
+          "title": "Live document list generated, icm-eager made by script, script checks, minimum text and text prediction published",
+          "owner": "",
+          "refusals": [],
+          "status": "done",
+          "reason": "C:/GitHub/the-control-icm/arms/icm/01 answer/documents.md exists; C:/GitHub/the-control-icm/builder/icm-check.txt contains \"minimum text per question\"; C:/GitHub/the-control-icm/PLAN.md contains \"after the minimum was published\""
+        },
+        {
+          "key": "the-control:gate",
+          "id": "gate",
+          "title": "The gate: cold walk, walk-test list, fidelity check by a fresh auditor; fixes from the closed list only",
+          "owner": "",
+          "refusals": [],
+          "status": "done",
+          "reason": "C:/GitHub/the-control-icm/builder/GATE-2.md contains \"GATE: PASS\""
+        },
+        {
+          "key": "the-control:freeze",
+          "id": "freeze",
+          "title": "Freeze: fingerprints of every arm, the questions and the analysis script",
+          "owner": "",
+          "refusals": [],
+          "status": "done",
+          "reason": "C:/GitHub/the-control-icm/FREEZE.md exists"
+        },
+        {
+          "key": "the-control:sealed-run",
+          "id": "sealed-run",
+          "title": "One sealed run, every session kept (sup1 void by usage limit; sup2 is the run)",
+          "owner": "",
+          "refusals": [],
+          "status": "done",
+          "reason": "C:/GitHub/the-control-icm/runs/sup2/logs.sha256 exists; C:/GitHub/the-control-icm/runs/sup2/scan.md contains \"No faults found.\""
+        },
+        {
+          "key": "the-control:marking",
+          "id": "marking",
+          "title": "Marking with the arms hidden (Claude Opus 5.5, Gemini), key-fact count, then the key revealed",
+          "owner": "",
+          "refusals": [],
+          "status": "done",
+          "reason": "C:/GitHub/the-control-icm/runs/sup2/marks-opus.csv exists; C:/GitHub/the-control-icm/runs/sup2/marks-gemini.csv exists; C:/GitHub/the-control-icm/runs/sup2/key.json exists"
+        },
+        {
+          "key": "the-control:results",
+          "id": "results",
+          "title": "Analysis script run once; results page written to its sentences",
+          "owner": "",
+          "refusals": [],
+          "status": "done",
+          "reason": "C:/GitHub/the-control-icm/RESULTS.md exists; C:/GitHub/the-control-icm/runs/sup2/verdicts.md exists"
+        },
+        {
+          "key": "the-control:publish",
+          "id": "publish",
+          "title": "Whether to publish: Jeff's call (all of it or none, voided run included)",
+          "owner": "",
+          "refusals": [],
+          "status": "waiting on Jeff",
+          "reason": "Jeff decides whether to publish the supplement"
+        }
+      ],
+      "counts": {
+        "done": 11,
+        "waiting on Jeff": 1
+      },
+      "nextUp": {
+        "none": "waiting on Jeff: publish"
+      }
+    },
+    {
+      "slug": "trades-office",
+      "name": "Trades Office",
+      "root": "C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ/10 Ventures/trades-office",
+      "links": [],
+      "problems": [],
+      "units": [
+        {
+          "key": "trades-office:owner-calls",
+          "id": "owner-calls",
+          "title": "Owner calls, 15 to 20 owners, logged one row per call; rule is 6 or more of 15 pick the same pain with a dated cost",
+          "owner": "",
+          "refusals": [
+            {
+              "rule": "R3",
+              "message": "no \"approved by NAME on DATE\" stamp: C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ/10 Ventures/_business-plan/doctrine.md"
+            }
+          ],
+          "status": "blocked",
+          "reason": "R3: no \"approved by NAME on DATE\" stamp: C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ/10 Ventures/_business-plan/doctrine.md"
+        },
+        {
+          "key": "trades-office:run3-fixes",
+          "id": "run3-fixes",
+          "title": "Fix what run 3 showed (the action rule, empty packet sections, item 8 at apprentice with keeper.md and the ladder agreeing on the log, the 4 unclear scheduler rules)",
+          "owner": "",
+          "refusals": [],
+          "status": "unknown",
+          "reason": "no disk marker declared (done_when: none)"
+        },
+        {
+          "key": "trades-office:new-jobs-test",
+          "id": "new-jobs-test",
+          "title": "Verdict test on 3 new made-up jobs the fixes were not fitted to, key written first by an agent that read only office/",
+          "owner": "",
+          "refusals": [],
+          "status": "unknown",
+          "reason": "no disk marker declared (done_when: none)"
+        },
+        {
+          "key": "trades-office:real-jobs-audit",
+          "id": "real-jobs-audit",
+          "title": "Audit 10 real past jobs at 1 business (past-jobs step of the ladder), with that owner's written permission; real files stay off OneDrive",
+          "owner": "",
+          "refusals": [],
+          "status": "unknown",
+          "reason": "no disk marker declared (done_when: none)"
+        },
+        {
+          "key": "trades-office:unready-pain",
+          "id": "unready-pain",
+          "title": "Decide whether \"jobs that start unready\" is its own pain in the doctrine or stays inside \"scattered job details\"",
+          "owner": "",
+          "refusals": [],
+          "status": "waiting on Jeff",
+          "reason": "Jeff picks: a 7th pain in the doctrine, or kept inside scattered job details"
+        },
+        {
+          "key": "trades-office:to-set-numbers",
+          "id": "to-set-numbers",
+          "title": "Set the 3 numbers marked \"to set\" in done-for-one-fix.md (dated examples needed, days unprompted, whether 1 week of their person running it is enough)",
+          "owner": "",
+          "refusals": [],
+          "status": "waiting on Jeff",
+          "reason": "Jeff sets the 3 numbers"
+        }
+      ],
+      "counts": {
+        "blocked": 1,
+        "unknown": 3,
+        "waiting on Jeff": 2
+      },
+      "nextUp": {
+        "none": "waiting on Jeff: unready-pain, to-set-numbers; first blocked: owner-calls (R3); unknown: run3-fixes, new-jobs-test, real-jobs-audit"
+      }
+    }
+  ],
+  "queue": {
+    "open": [
+      {
+        "blocks": [
+          "trades-office:owner-calls",
+          "trades-office:real-jobs-audit",
+          "trades-office:unready-pain"
+        ],
+        "id": "trades-office/fact/259a8d0a99",
+        "project": "trades-office",
+        "gate": "fact approval",
+        "question": "Approve doctrine.md as the shared fact file, as it reads now?",
+        "open": "C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ/10 Ventures/_business-plan/doctrine.md",
+        "fingerprint": "19c83dd738",
+        "answers": [
+          {
+            "key": "a",
+            "label": "Yes, approve it as it is now",
+            "action": "approve-fact",
+            "target": "C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ/10 Ventures/_business-plan/doctrine.md"
+          },
+          {
+            "key": "b",
+            "label": "No, change it first: ___",
+            "action": "note"
+          }
+        ]
+      },
+      {
+        "blocks": [
+          "trades-office:run3-fixes",
+          "trades-office:new-jobs-test",
+          "trades-office:real-jobs-audit"
+        ],
+        "id": "trades-office/fact/b398525918",
+        "project": "trades-office",
+        "gate": "fact approval",
+        "question": "Approve the-tool.md as the shared fact file, as it reads now?",
+        "open": "C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ/10 Ventures/trades-office/the-tool.md",
+        "fingerprint": "a942cce2aa",
+        "answers": [
+          {
+            "key": "a",
+            "label": "Yes, approve it as it is now",
+            "action": "approve-fact",
+            "target": "C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ/10 Ventures/trades-office/the-tool.md"
+          },
+          {
+            "key": "b",
+            "label": "No, change it first: ___",
+            "action": "note"
+          }
+        ]
+      },
+      {
+        "blocks": [
+          "trades-office:run3-fixes",
+          "trades-office:new-jobs-test",
+          "trades-office:real-jobs-audit"
+        ],
+        "id": "trades-office/fact/7cf640ac47",
+        "project": "trades-office",
+        "gate": "fact approval",
+        "question": "Approve keeper.md as the shared fact file, as it reads now?",
+        "open": "C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ/10 Ventures/trades-office/office/_record/keeper.md",
+        "fingerprint": "c6170947fa",
+        "answers": [
+          {
+            "key": "a",
+            "label": "Yes, approve it as it is now",
+            "action": "approve-fact",
+            "target": "C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ/10 Ventures/trades-office/office/_record/keeper.md"
+          },
+          {
+            "key": "b",
+            "label": "No, change it first: ___",
+            "action": "note"
+          }
+        ]
+      },
+      {
+        "blocks": [
+          "trades-office:run3-fixes",
+          "trades-office:new-jobs-test",
+          "trades-office:real-jobs-audit"
+        ],
+        "id": "trades-office/fact/b323904509",
+        "project": "trades-office",
+        "gate": "fact approval",
+        "question": "Approve ladder.md as the shared fact file, as it reads now?",
+        "open": "C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ/10 Ventures/trades-office/office/_record/ladder.md",
+        "fingerprint": "6895c633c5",
+        "answers": [
+          {
+            "key": "a",
+            "label": "Yes, approve it as it is now",
+            "action": "approve-fact",
+            "target": "C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ/10 Ventures/trades-office/office/_record/ladder.md"
+          },
+          {
+            "key": "b",
+            "label": "No, change it first: ___",
+            "action": "note"
+          }
+        ]
+      },
+      {
+        "blocks": [
+          "trades-office:run3-fixes",
+          "trades-office:new-jobs-test",
+          "trades-office:real-jobs-audit"
+        ],
+        "id": "trades-office/fact/bc00dca95b",
+        "project": "trades-office",
+        "gate": "fact approval",
+        "question": "Approve rule-of-4.md as the shared fact file, as it reads now?",
+        "open": "C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ/10 Ventures/trades-office/office/_record/rule-of-4.md",
+        "fingerprint": "4ee10d0654",
+        "answers": [
+          {
+            "key": "a",
+            "label": "Yes, approve it as it is now",
+            "action": "approve-fact",
+            "target": "C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ/10 Ventures/trades-office/office/_record/rule-of-4.md"
+          },
+          {
+            "key": "b",
+            "label": "No, change it first: ___",
+            "action": "note"
+          }
+        ]
+      },
+      {
+        "blocks": [
+          "idea-engine:01x-second-host"
+        ],
+        "id": "idea-engine/oq10-host-pick/gate",
+        "project": "idea-engine",
+        "unit": "idea-engine:oq10-host-pick",
+        "gate": "unit gate",
+        "question": "Which second AI host first (open question 10, stage 01X smoke test, then stage 04)?",
+        "open": "C:/GitHub/idea-engine-van-leenen/_shared/open-questions.md",
+        "fingerprint": "86ae35d58a",
+        "answers": [
+          {
+            "key": "a",
+            "label": "My decision: ___",
+            "action": "note"
+          }
+        ]
+      },
+      {
+        "blocks": [],
+        "id": "the-control/publish/gate",
+        "project": "the-control",
+        "unit": "the-control:publish",
+        "gate": "unit gate",
+        "question": "Approve publish's return, PUBLISHING.md? (Jeff decides whether to publish the supplement)",
+        "open": "C:/GitHub/the-control-icm/PUBLISHING.md",
+        "fingerprint": "dc10dece97",
+        "answers": [
+          {
+            "key": "a",
+            "label": "Yes, approve it",
+            "action": "approve-return",
+            "target": "C:/GitHub/the-control-icm/PUBLISHING.md",
+            "signNeeded": false
+          },
+          {
+            "key": "b",
+            "label": "No, rework: ___",
+            "action": "note"
+          }
+        ]
+      },
+      {
+        "blocks": [],
+        "id": "trades-office/run3-fixes/gap",
+        "project": "trades-office",
+        "unit": "trades-office:run3-fixes",
+        "gate": "gap",
+        "question": "GMSD cannot read run3-fixes's state from disk (no disk marker declared (done_when: none)). What file shows it is done?",
+        "open": "C:/GitHub/command-center-gmsd/projects/trades-office/graph.md",
+        "fingerprint": "55688d5d53",
+        "answers": [
+          {
+            "key": "a",
+            "label": "It is done when this exists: ___",
+            "action": "note"
+          },
+          {
+            "key": "b",
+            "label": "Drop this unit from the graph",
+            "action": "note"
+          }
+        ]
+      },
+      {
+        "blocks": [],
+        "id": "trades-office/new-jobs-test/gap",
+        "project": "trades-office",
+        "unit": "trades-office:new-jobs-test",
+        "gate": "gap",
+        "question": "GMSD cannot read new-jobs-test's state from disk (no disk marker declared (done_when: none)). What file shows it is done?",
+        "open": "C:/GitHub/command-center-gmsd/projects/trades-office/graph.md",
+        "fingerprint": "55688d5d53",
+        "answers": [
+          {
+            "key": "a",
+            "label": "It is done when this exists: ___",
+            "action": "note"
+          },
+          {
+            "key": "b",
+            "label": "Drop this unit from the graph",
+            "action": "note"
+          }
+        ]
+      },
+      {
+        "blocks": [],
+        "id": "trades-office/real-jobs-audit/gap",
+        "project": "trades-office",
+        "unit": "trades-office:real-jobs-audit",
+        "gate": "gap",
+        "question": "GMSD cannot read real-jobs-audit's state from disk (no disk marker declared (done_when: none)). What file shows it is done?",
+        "open": "C:/GitHub/command-center-gmsd/projects/trades-office/graph.md",
+        "fingerprint": "55688d5d53",
+        "answers": [
+          {
+            "key": "a",
+            "label": "It is done when this exists: ___",
+            "action": "note"
+          },
+          {
+            "key": "b",
+            "label": "Drop this unit from the graph",
+            "action": "note"
+          }
+        ]
+      },
+      {
+        "blocks": [],
+        "id": "trades-office/unready-pain/gate",
+        "project": "trades-office",
+        "unit": "trades-office:unready-pain",
+        "gate": "unit gate",
+        "question": "Decide whether \"jobs that start unready\" is its own pain in the doctrine or stays inside \"scattered job details\"?",
+        "open": "C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ/10 Ventures/trades-office/bottleneck-map.md",
+        "fingerprint": "86ae35d58a",
+        "answers": [
+          {
+            "key": "a",
+            "label": "My decision: ___",
+            "action": "note"
+          }
+        ]
+      },
+      {
+        "blocks": [],
+        "id": "trades-office/to-set-numbers/gate",
+        "project": "trades-office",
+        "unit": "trades-office:to-set-numbers",
+        "gate": "unit gate",
+        "question": "Set the 3 numbers marked \"to set\" in done-for-one-fix.md (dated examples needed, days unprompted, whether 1 week of their person running it is enough)?",
+        "open": "C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ/10 Ventures/trades-office/done-for-one-fix.md",
+        "fingerprint": "86ae35d58a",
+        "answers": [
+          {
+            "key": "a",
+            "label": "My decision: ___",
+            "action": "note"
+          }
+        ]
+      }
+    ],
+    "answered": []
+  },
+  "legacy": [
+    {
+      "slug": "90-to-market",
+      "name": "90 to Market",
+      "cardUpdated": "2026-08-15",
+      "folder": "10 Ventures/90-to-market"
+    },
+    {
+      "slug": "ai-the-vl-way",
+      "name": "AI the vL Way",
+      "cardUpdated": "2026-08-06",
+      "folder": ""
+    },
+    {
+      "slug": "ai-the-vl-way-talk",
+      "name": "AI the vL Way Talk",
+      "cardUpdated": "2026-09-23",
+      "folder": "40 Factory/ai-the-vl-way-talk"
+    },
+    {
+      "slug": "ai-venture-strategist",
+      "name": "AI Venture Strategist",
+      "cardUpdated": "2026-09-23",
+      "folder": "10 Ventures/ai-venture-strategist"
+    },
+    {
+      "slug": "animation-studio",
+      "name": "Animation Studio",
+      "cardUpdated": "2026-08-15",
+      "folder": "40 Factory/animation-studio"
+    },
+    {
+      "slug": "blob-game",
+      "name": "Blob Game",
+      "cardUpdated": "2026-08-29",
+      "folder": "40 Factory/blob-game"
+    },
+    {
+      "slug": "build-dont-rent",
+      "name": "Build Don't Rent",
+      "cardUpdated": "2026-09-23",
+      "folder": "10 Ventures/build-dont-rent"
+    },
+    {
+      "slug": "build-it-once",
+      "name": "Build It Once",
+      "cardUpdated": "2026-08-06",
+      "folder": ""
+    },
+    {
+      "slug": "christmas-wish-short-ad",
+      "name": "Christmas Wish Short Ad",
+      "cardUpdated": "2026-09-23",
+      "folder": "10 Ventures/christmas-wish-short-ad"
+    },
+    {
+      "slug": "clief-notes",
+      "name": "Clief Notes",
+      "cardUpdated": "2026-09-26",
+      "folder": "10 Ventures/clief-notes"
+    },
+    {
+      "slug": "customer-engine",
+      "name": "Customer Engine",
+      "cardUpdated": "2026-08-22",
+      "folder": "40 Factory/customer-engine"
+    },
+    {
+      "slug": "email-assistant-icm",
+      "name": "Email & Calendar Assistant",
+      "cardUpdated": "2026-09-29",
+      "folder": "40 Factory/email-assistant-icm"
+    },
+    {
+      "slug": "funnel-engine",
+      "name": "Funnel Engine",
+      "cardUpdated": "2026-09-01",
+      "folder": "40 Factory/funnel-engine"
+    },
+    {
+      "slug": "icm-consulting",
+      "name": "ICM Consulting",
+      "cardUpdated": "2026-08-30",
+      "folder": "10 Ventures/icm-consulting"
+    },
+    {
+      "slug": "icm-factory",
+      "name": "ICM Factory, the agent-as-a-folder builder",
+      "cardUpdated": "2026-09-27",
+      "folder": "40 Factory/icm-factory"
+    },
+    {
+      "slug": "icm-film",
+      "name": "ICM Film (explainer)",
+      "cardUpdated": "2026-08-20",
+      "folder": "10 Ventures/icm-film"
+    },
+    {
+      "slug": "icm-teacher",
+      "name": "ICM Teacher",
+      "cardUpdated": "2026-09-04",
+      "folder": "40 Factory/icm-teacher"
+    },
+    {
+      "slug": "ignite",
+      "name": "Ignite AI Academy",
+      "cardUpdated": "2026-08-04",
+      "folder": "10 Ventures/ignite-ai-academy"
+    },
+    {
+      "slug": "jev-decisions",
+      "name": "jev-decisions",
+      "cardUpdated": "2026-09-25",
+      "folder": "40 Factory/jev-decisions"
+    },
+    {
+      "slug": "machine-gun-rabbit",
+      "name": "Machine Gun Rabbit",
+      "cardUpdated": "2026-08-15",
+      "folder": "10 Ventures/machine-gun-rabbit"
+    },
+    {
+      "slug": "mailbox-autopilot",
+      "name": "mailbox-autopilot",
+      "cardUpdated": "2026-09-28",
+      "folder": "40 Factory/mailbox-autopilot"
+    },
+    {
+      "slug": "marketing",
+      "name": "Marketing",
+      "cardUpdated": "2026-08-04",
+      "folder": ""
+    },
+    {
+      "slug": "production-line",
+      "name": "Production Line",
+      "cardUpdated": "2026-09-30",
+      "folder": "40 Factory/production-line"
+    },
+    {
+      "slug": "remotion-video-machine",
+      "name": "Remotion Video Machine",
+      "cardUpdated": "2026-09-23",
+      "folder": "40 Factory/remotion-video-machine"
+    },
+    {
+      "slug": "sage-intacct-api",
+      "name": "Sage Intacct API access for 5AP",
+      "cardUpdated": "2026-09-28",
+      "folder": "30 Work/work/sage-intacct-api"
+    },
+    {
+      "slug": "skill-bundles",
+      "name": "Skill Bundles",
+      "cardUpdated": "2026-09-02",
+      "folder": "40 Factory/skill-bundles"
+    },
+    {
+      "slug": "festival-film",
+      "name": "The Christmas Wish (Festival Film)",
+      "cardUpdated": "2026-09-23",
+      "folder": "10 Ventures/festival-film"
+    },
+    {
+      "slug": "business-plan",
+      "name": "The School",
+      "cardUpdated": "2026-09-26",
+      "folder": "10 Ventures/_business-plan"
+    },
+    {
+      "slug": "vibe-coding-course",
+      "name": "Vibe Coding Free Course",
+      "cardUpdated": "2026-08-04",
+      "folder": "10 Ventures/vibe-coding-course"
+    }
+  ],
+  "untracked": []
+}

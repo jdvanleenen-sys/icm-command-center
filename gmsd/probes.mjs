@@ -76,9 +76,9 @@ function fileProbe(kind, file, args, home) {
     const a = factApproval(home, file);
     return result(a.ok, a.ok ? `${file} approved by ${a.stamp.by} on ${a.stamp.on} (${a.stamp.via})` : a.reason);
   }
-  if (kind === 'contains') {
+  if (kind === 'contains' || kind === 'lacks') {
     const has = text.includes(args[0] || '');
-    return result(has, `${file} ${has ? 'contains' : 'lacks'} "${args[0]}"`);
+    return result(kind === 'contains' ? has : !has, `${file} ${has ? 'contains' : 'lacks'} "${args[0]}"`);
   }
   if (kind === 'field') return fieldProbe(file, text, args[0]);
   if (kind === 'rows') return rowsProbe(file, text, args);

@@ -30,8 +30,18 @@ gate: Jeff signs approved_by in done.md; that decides whether stage 02 starts an
 start_reads: CONTEXT.md, stages/01_founder-recall/CONTEXT.md, _shared/PRD.md, stages/00_contain-define/output/done.md, _shared/coding-rules.md, _templates/stage-done.md
 stop_at: output/done.md written from _templates/stage-done.md (problems found, per-method counts and costs, p95 latency, case inventory counts) with approved_by blank, work pushed on feature/01-founder-recall, not merged to main
 
+## oq10-host-pick
+title: Which second AI host first (open question 10, stage 01X smoke test, then stage 04)
+reads: _shared/open-questions.md, _shared/decisions.md, _shared/PRD.md
+writes: _shared/open-questions.md, _shared/decisions.md
+done_when: lacks _shared/open-questions.md `(stage 01X smoke test, then stage 04) | Jeff + Roelof | open |`
+gate: Jeff and Roelof pick the host
+start_reads: _shared/open-questions.md, _shared/decisions.md
+stop_at: the host Jeff named added to decisions.md as a new dated row, and row 10 in open-questions.md marked settled with that row's number; nothing else changed
+
 ## 01x-second-host
 title: Second AI host technical smoke test (runs alongside 01 and 02, blocks neither)
+waits_on: oq10-host-pick
 reads: _shared/PRD.md, _shared/decisions.md, _shared/open-questions.md
 writes: stages/01x_second-host/output/
 facts: _shared/PRD.md
@@ -39,7 +49,7 @@ done_when: stamped stages/01x_second-host/output/done.md
 returns: stages/01x_second-host/output/done.md
 gate: Jeff signs approved_by in done.md
 start_reads: CONTEXT.md, stages/01x_second-host/CONTEXT.md, _shared/PRD.md, _shared/open-questions.md, _shared/coding-rules.md, _templates/stage-done.md
-stop_at: stop and ask Jeff if open question 10 (which host) is unanswered; otherwise output/host-matrix.md and output/done.md written with approved_by blank, work pushed on a feature branch, not merged to main
+stop_at: output/host-matrix.md (for the host settled in open question 10) and output/done.md written with approved_by blank, work pushed on a feature branch, not merged to main
 
 ## 02-founder-cases
 title: Founder cases and "what have I tried?" case recall

@@ -33,6 +33,11 @@ function printRefusals(refusals) {
 }
 
 const [command, ...args] = process.argv.slice(2);
+const unknownFlag = args.find((a) => a.startsWith('--') && !(command === 'board' && a === '--write'));
+if (unknownFlag) {
+  console.log(`ERROR: unknown flag ${unknownFlag}; nothing was done`);
+  process.exit(2);
+}
 if (command === 'board') printBoard(args.includes('--write'));
 else if (command === 'check') {
   const refusals = checkUnit(buildWorld(HOME), keyOf(args[0], args[1]));

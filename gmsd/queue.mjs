@@ -3,7 +3,7 @@
 import path from 'node:path';
 import { depsOf } from './checker.mjs';
 import { rulingItems } from './converge.mjs';
-import { readIfExists, toSlash } from './paths.mjs';
+import { readIfExists, resolvePath, toSlash } from './paths.mjs';
 import { factApproval, sha256 } from './stamps.mjs';
 import { findAnswer } from './answers.mjs';
 import { awaitsJeff, missingFacts, isDone } from './world.mjs';
@@ -61,7 +61,7 @@ function gateItem(world, u) {
     unit: u.key,
     gate: 'unit gate',
     question: isDecision ? `${u.title.replace(/[.?]$/, '')}?` : `Approve ${u.id}'s return, ${path.basename(u.returnsFile)}? (${u.gate})`,
-    open: u.returnsFile || graphFile(world, u),
+    open: u.returnsFile || (u.reads.length ? resolvePath(u.root, u.reads[0]) : graphFile(world, u)),
     fingerprint: short(u.returnsText ?? 'decision'),
     answers,
     blocks: blocksOf(world, u),
