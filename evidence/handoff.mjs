@@ -11,10 +11,11 @@ import { answerItem } from '../gmsd/actions.mjs';
 import { buildBoard } from '../gmsd/board.mjs';
 
 const HOME = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const SIMULATED = 'Fix 1: repeat the action rule in the starter\'s agent instructions (no script). '
-  + 'Fix 3: at apprentice a proposed decision does not count; item 8 fails until a person decides. '
+const SIMULATED = 'Fix 1: (b), repeat the action rule in the shared rules text at the top of worker.py. '
+  + 'Fix 3: a proposed decision does not count; item 8 passes only when the decision is filed with a decider and a date. '
   + 'Fix 4: a source that differs from the signed scope fails item 1; a date inside the signed window agrees; '
-  + 'all 4 site constraints are required; "power" means working electrical service on site.';
+  + 'all 4 site constraints are required and "power" means working electrical service on site; '
+  + 'a gap inside the signed scope is a hold: the job is not ready and a staff ask goes to the estimator.';
 
 const base = fs.mkdtempSync(path.join(os.tmpdir(), 'gmsd-handoff-'));
 try {
