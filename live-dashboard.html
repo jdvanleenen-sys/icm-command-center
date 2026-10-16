@@ -2,174 +2,199 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Command Center — live</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GMSD Board</title>
 <style>
+  /* Layout: one column of cards, queue first (what needs Jeff), then projects, then the rest. */
   :root{
     --ground:#F7F3EE; --panel:#FFFFFF; --panel-2:#EFE7DC;
-    --navy:#14314F; --navy-2:#0E2740; --ink:#14314F; --ink-soft:#5B6B7A;
-    --cognac:#C67A3C; --cognac-ink:#8B5628; --tint:#E7ECF3;
-    --good:#3F7D5A; --warn:#C6892F; --risk:#B4472F;
-    --line:#E2D8CA; --shadow:0 1px 2px rgba(20,49,79,.06),0 6px 20px rgba(20,49,79,.07);
-    --radius:16px;
+    --ink:#14314F; --ink-soft:#5B6B7A; --cognac-ink:#8B5628; --cognac:#C67A3C;
+    --good:#3F7D5A; --warn:#9A6A1F; --risk:#B4472F; --line:#E2D8CA;
+    --shadow:0 1px 2px rgba(20,49,79,.06),0 6px 20px rgba(20,49,79,.07); --radius:14px;
+    --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   }
   @media (prefers-color-scheme:dark){
-    :root{
-      --ground:#0E2740; --panel:#153048; --panel-2:#1B3B57;
-      --ink:#EAF1F7; --ink-soft:#9DB2C4; --navy:#EAF1F7; --navy-2:#cfe0ee;
-      --cognac:#E0995A; --cognac-ink:#E8A867; --tint:#1B3B57;
-      --good:#68B08A; --warn:#E0B15C; --risk:#E08066;
-      --line:#26445e; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.28);
+    :root:not([data-theme="light"]){
+      --ground:#0E2740; --panel:#153048; --panel-2:#1B3B57; --ink:#EAF1F7; --ink-soft:#9DB2C4;
+      --cognac:#E0995A; --cognac-ink:#E8A867; --good:#68B08A; --warn:#E0B15C; --risk:#E08066;
+      --line:#26445e; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.28); color-scheme:dark;
     }
   }
+  :root[data-theme="dark"]{
+    --ground:#0E2740; --panel:#153048; --panel-2:#1B3B57; --ink:#EAF1F7; --ink-soft:#9DB2C4;
+    --cognac:#E0995A; --cognac-ink:#E8A867; --good:#68B08A; --warn:#E0B15C; --risk:#E08066;
+    --line:#26445e; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.28); color-scheme:dark;
+  }
   *{box-sizing:border-box}
-  body{margin:0;background:var(--ground);color:var(--ink);
-    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.5;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1080px;margin:0 auto;padding:clamp(20px,4vw,44px) clamp(16px,4vw,32px) 64px}
+  body{margin:0;background:var(--ground);color:var(--ink);line-height:1.5;font-family:var(--sans)}
+  .wrap{max-width:1080px;margin:0 auto;padding-inline:16px;padding-block:clamp(20px,4vw,44px) 64px}
   .eyebrow{text-transform:uppercase;letter-spacing:.16em;font-size:12px;font-weight:700;color:var(--cognac-ink)}
-  h1{font-size:clamp(26px,5vw,36px);margin:.15em 0 .1em;letter-spacing:-.02em;color:var(--navy)}
+  h1{font-size:clamp(26px,5vw,34px);margin:.15em 0 .1em;letter-spacing:-.02em;text-wrap:balance}
   .sub{color:var(--ink-soft);font-size:14px;margin:0}
-  .meta{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:8px;font-size:12.5px;color:var(--ink-soft)}
-  .meta b{color:var(--ink)}
-  .dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--good);margin-right:5px}
   section{margin-top:30px}
-  .sectitle{display:flex;align-items:baseline;gap:10px;margin:0 0 12px;font-size:13px;
-    text-transform:uppercase;letter-spacing:.14em;font-weight:700;color:var(--ink-soft)}
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-    padding:16px 16px 14px;box-shadow:var(--shadow);display:flex;flex-direction:column;gap:8px}
-  .card h3{margin:0;font-size:16px;color:var(--navy);letter-spacing:-.01em}
-  .card .line{color:var(--ink-soft);font-size:13px;margin:0}
-  .chip{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:700;
-    padding:3px 9px;border-radius:999px;white-space:nowrap;width:fit-content}
-  .chip::before{content:"";width:7px;height:7px;border-radius:50%}
-  .chip.green{background:color-mix(in srgb,var(--good) 16%,transparent);color:var(--good)}
-  .chip.green::before{background:var(--good)}
-  .chip.amber{background:color-mix(in srgb,var(--warn) 18%,transparent);color:var(--warn)}
-  .chip.amber::before{background:var(--warn)}
-  .chip.red{background:color-mix(in srgb,var(--risk) 16%,transparent);color:var(--risk)}
-  .chip.red::before{background:var(--risk)}
-  .items{list-style:none;margin:2px 0 0;padding:0;display:grid;gap:5px}
-  .items li{display:flex;gap:7px;font-size:12.5px;align-items:flex-start;color:var(--ink)}
-  .tag{flex:0 0 auto;font-size:9.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;
-    padding:2px 6px;border-radius:5px;margin-top:1px}
-  .tag.p{background:color-mix(in srgb,var(--warn) 20%,transparent);color:var(--warn)}
-  .tag.d{background:var(--tint);color:var(--navy)}
-  .tag.u{background:color-mix(in srgb,var(--cognac) 22%,transparent);color:var(--cognac-ink)}
-  .updated{font-size:11px;color:var(--ink-soft)}
-
-  .tasklist{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);
-    padding:14px 16px;box-shadow:var(--shadow);margin-bottom:12px}
-  .tasklist h4{margin:0 0 8px;font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft)}
-  .task{display:flex;gap:10px;align-items:flex-start;padding:6px 0;font-size:14px;border-top:1px solid var(--line)}
-  .task:first-of-type{border-top:none}
-  .task input{margin-top:3px;width:16px;height:16px;accent-color:var(--good);cursor:pointer;flex:0 0 auto}
-  .task label{cursor:pointer}
-  .task.done label{color:var(--ink-soft);text-decoration:line-through}
-
-  .empty{color:var(--ink-soft);font-size:13px;padding:20px 0}
-  .err{color:var(--risk);font-size:13px}
+  h2{margin:0 0 12px;font-size:13px;text-transform:uppercase;letter-spacing:.14em;color:var(--ink-soft)}
+  .stack{display:grid;gap:12px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px;min-width:0}
+  .q{font-weight:650;margin:0 0 4px}
+  .small{font-size:12.5px;color:var(--ink-soft);overflow-wrap:anywhere}
+  .tag{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:2px 8px;border-radius:99px;background:var(--panel-2);color:var(--ink);margin-right:6px}
+  .answers{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;align-items:center}
+  button{font:inherit;font-size:13px;border:1px solid var(--line);background:var(--panel-2);color:var(--ink);border-radius:8px;padding:8px 12px;cursor:pointer;text-align:left}
+  button:hover{border-color:var(--cognac)}
+  button:focus-visible,input:focus-visible{outline:2px solid var(--cognac);outline-offset:2px}
+  button:disabled{opacity:.6;cursor:default}
+  input[type=text]{font:inherit;font-size:14px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--panel);color:var(--ink);width:100%}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  td,th{text-align:left;padding:6px 8px;border-top:1px solid var(--line);vertical-align:top}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-soft)}
+  .st{font-weight:700;white-space:nowrap}
+  .st-done,.st-ready{color:var(--good)} .st-running,.st-waiting{color:var(--cognac-ink)}
+  .st-blocked{color:var(--risk)} .st-unknown{color:var(--warn)}
+  .tablewrap{overflow-x:auto}
+  pre{white-space:pre-wrap;overflow-wrap:anywhere;background:var(--panel-2);color:var(--ink);border-radius:8px;padding:10px;font-size:12.5px;margin:8px 0 0}
+  .err{color:var(--risk);font-size:13px;margin-top:6px}
+  .note{color:var(--ink-soft);font-size:13px;margin-top:6px}
 </style>
 </head>
 <body>
+<main>
 <div class="wrap">
-  <header>
-    <div class="eyebrow">AI the vL Way · Command Center</div>
-    <h1>The whole board, live</h1>
-    <p class="sub">Reads projects/*.md and JEFF-TASKS.md straight off disk. Check a box below and it writes back to the real file — nothing here is a snapshot.</p>
-    <div class="meta">
-      <span><span class="dot" id="live-dot"></span><b id="live-status">connecting…</b></span>
-      <span>Source: <code>command-center/projects/</code> + <code>JEFF-TASKS.md</code></span>
-    </div>
-  </header>
-
-  <section>
-    <div class="sectitle">Your tasks — click to check off</div>
-    <div id="tasks"></div>
-  </section>
-
-  <section>
-    <div class="sectitle">Project board</div>
-    <div class="grid" id="board"></div>
-  </section>
+  <div class="eyebrow">GMSD</div>
+  <h1>Every project, from the disk</h1>
+  <p class="sub" id="meta">Loading the board.</p>
+  <section><h2 id="qtitle">Waiting on Jeff</h2><div class="stack" id="queue"></div></section>
+  <section><h2>Projects on the graph</h2><div class="stack" id="projects"></div></section>
+  <section><h2>Answered, waiting on the follow-up</h2><div class="stack" id="answered"></div></section>
+  <section><h2>Projects with no graph yet</h2><div class="card tablewrap" id="legacy"></div></section>
 </div>
-
+</main>
 <script>
-async function loadTasks() {
-  const res = await fetch('/api/tasks');
-  const sections = await res.json();
-  const root = document.getElementById('tasks');
-  root.innerHTML = '';
-  if (!sections.length) { root.innerHTML = '<div class="empty">No checkbox items found in JEFF-TASKS.md.</div>'; return; }
-  for (const sec of sections) {
-    const box = document.createElement('div');
-    box.className = 'tasklist';
-    const h = document.createElement('h4');
-    h.textContent = sec.heading;
-    box.appendChild(h);
-    for (const item of sec.items) {
-      const row = document.createElement('div');
-      row.className = 'task' + (item.checked ? ' done' : '');
-      const id = 'task-' + item.lineIndex;
-      row.innerHTML = '<input type="checkbox" id="' + id + '" ' + (item.checked ? 'checked' : '') + '>' +
-        '<label for="' + id + '"></label>';
-      row.querySelector('label').textContent = item.text;
-      row.querySelector('input').addEventListener('change', () => toggle(item.lineIndex));
-      box.appendChild(row);
-    }
-    root.appendChild(box);
-  }
+// One page, two modes. Live (served by server.js on this PC): reads /api/board, answers and
+// starts go to the local server. Phone copy (gmsd/snapshot.mjs inlines window.BOARD_SNAPSHOT):
+// answers are saved to the published page's "answers" collection, and the next GMSD pass on
+// the PC applies them. A phone cannot start a unit; it shows the prompt to copy.
+const SNAP = window.BOARD_SNAPSHOT || null;
+const esc = (t) => String(t ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const stClass = (s) => 'st st-' + (s === 'waiting on Jeff' ? 'waiting' : s);
+const byId = (id) => document.getElementById(id);
+let phoneDb = null;
+let sentDocs = [];
+
+async function post(url, body) {
+  const res = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  return res.json();
 }
 
-async function toggle(lineIndex) {
-  await fetch('/api/tasks/toggle', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ lineIndex })
-  });
-  loadTasks();
+function sentLine(it) {
+  const mine = sentDocs.filter((d) => d.id === it.id).sort((a, b) => String(b.sentAt).localeCompare(String(a.sentAt)));
+  return mine.map((d) => `<div class="note">Sent ${esc(new Date(d.sentAt).toLocaleString())}: ${esc(d.choice)}) ${esc(d.text)} · ${d.status === 'applied' ? 'applied on the PC' : d.status === 'refused' ? 'refused on the PC: ' + esc(d.reason) : 'applied on the next pass at the PC'}</div>`).join('');
 }
 
-function bulletList(items, tagClass, tagLabel) {
-  if (!items.length) return '';
-  return '<ul class="items">' + items.map(t =>
-    '<li><span class="tag ' + tagClass + '">' + tagLabel + '</span>' + escapeHtml(t) + '</li>'
-  ).join('') + '</ul>';
-}
-function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
-
-async function loadBoard() {
-  const res = await fetch('/api/board');
-  const projects = await res.json();
-  const root = document.getElementById('board');
-  root.innerHTML = projects.map(p => `
-    <div class="card">
-      <span class="chip ${p.chip}">${escapeHtml(p.state)}</span>
-      <h3>${escapeHtml(p.name)}</h3>
-      <p class="line">${escapeHtml(p.oneLiner)}</p>
-      ${bulletList(p.pending, 'p', 'Pending')}
-      ${bulletList(p.decisions, 'd', 'Decide')}
-      ${bulletList(p.urls, 'u', 'URL')}
-      ${p.updated ? '<div class="updated">Updated ' + escapeHtml(p.updated) + '</div>' : ''}
-    </div>
-  `).join('');
+function queueCard(it) {
+  const needsText = it.answers.some((a) => a.label.includes('___'));
+  const buttons = it.answers.map((a) => `<button data-id="${esc(it.id)}" data-choice="${a.key}">${esc(a.key)}) ${esc(a.label)}</button>`).join('');
+  return `<div class="card"><p class="q">${esc(it.question)}</p>
+    <div class="small"><span class="tag">${esc(it.gate)}</span>open: ${esc(it.open)}</div>
+    ${it.blocks.length ? `<div class="small">blocks: ${esc(it.blocks.join(', '))}</div>` : ''}
+    ${needsText ? `<div class="answers"><input type="text" id="t-${esc(it.id)}" data-text="${esc(it.id)}" placeholder="Your text for the ___ (needed for that answer)"></div>` : ''}
+    <div class="answers">${buttons}</div>
+    <div class="err" data-err="${esc(it.id)}"></div>${SNAP ? sentLine(it) : ''}</div>`;
 }
 
-async function refresh() {
+function nextLine(p) {
+  if (!p.nextUp.unit) return `Next up: none. ${esc(p.nextUp.none)}`;
+  const label = SNAP ? 'Show the start prompt' : 'Start it (claims it, copies the prompt)';
+  return `Next up: <b>${esc(p.nextUp.unit)}</b> <button data-start="${esc(p.slug)}" data-unit="${esc(p.nextUp.unit)}">${label}</button>`;
+}
+
+function projectCard(p) {
+  if (!p.units.length) return `<div class="card"><p class="q">${esc(p.name)}</p><div class="small">Its own board: ${esc(p.links.join(', '))}. GMSD never starts or gates it.</div></div>`;
+  const rows = p.units.map((u) => `<tr><td>${esc(u.id)}</td><td class="${stClass(u.status)}">${esc(u.status)}</td><td>${esc(u.owner)}</td><td class="small">${esc(u.reason)}</td></tr>`).join('');
+  return `<div class="card"><p class="q">${esc(p.name)}</p><div class="small">${nextLine(p)}</div>
+    <div data-prompt="${esc(p.slug)}"></div>
+    ${p.problems.length ? `<div class="err">Graph problems: ${esc(p.problems.join('; '))}</div>` : ''}
+    <div class="tablewrap"><table><tr><th>Unit</th><th>Status</th><th>Owner</th><th>Why</th></tr>${rows}</table></div></div>`;
+}
+
+function answeredCard(it) {
+  const follow = it.answer.followUp ? `<pre>${esc(it.answer.followUp)}</pre>` : '';
+  return `<div class="card"><p class="q">${esc(it.question)}</p><div class="small">You answered ${esc(it.answer.choice)}) ${esc(it.answer.label)} ${esc(it.answer.text)} on ${esc(it.answer.on)}</div>${follow}</div>`;
+}
+
+let board = null;
+function render() {
+  const built = new Date(board.generated).toLocaleString();
+  byId('meta').textContent = SNAP ? `Phone copy of the board, built from the disk at ${built}. Answers you send here are applied at the PC.` : `Built from the disk at ${built}. Nothing here is typed.`;
+  byId('qtitle').textContent = `Waiting on Jeff (${board.queue.open.length})`;
+  byId('queue').innerHTML = board.queue.open.map(queueCard).join('') || '<div class="card small">Nothing is waiting on you.</div>';
+  byId('projects').innerHTML = board.projects.map(projectCard).join('');
+  byId('answered').innerHTML = board.queue.answered.map(answeredCard).join('') || '<div class="card small">None.</div>';
+  const legacy = board.legacy.map((c) => `<tr><td>${esc(c.name)}</td><td>${esc(c.cardUpdated)}</td><td class="small">${esc(c.folder)}</td></tr>`).join('');
+  const loose = board.untracked && board.untracked.length ? `<p class="small">Folders no card or graph names: ${esc(board.untracked.join(', '))}</p>` : '';
+  byId('legacy').innerHTML = `<table><tr><th>Project</th><th>Card last edited</th><th>Folder</th></tr>${legacy}</table>${loose}`;
+}
+
+async function load() {
+  board = SNAP || await (await fetch('/api/board')).json();
+  render();
+}
+
+async function sendFromPhone(id, choice, text) {
+  if (!phoneDb) return { ok: false, error: 'Answering needs the board opened in Claude, signed in.' };
+  const it = board.queue.open.find((x) => x.id === id);
+  const answer = it.answers.find((a) => a.key === choice);
+  if (answer.label.includes('___') && !text.trim()) return { ok: false, error: 'Type the text for the ___ first, then tap the answer.' };
   try {
-    await Promise.all([loadTasks(), loadBoard()]);
-    document.getElementById('live-status').textContent = 'live · ' + new Date().toLocaleTimeString();
-    document.getElementById('live-dot').style.background = 'var(--good)';
+    await phoneDb.collection('answers').add({ id, choice, text: text.trim(), question: it.question, sentAt: new Date().toISOString(), status: 'new' });
+    return { ok: true };
   } catch (e) {
-    document.getElementById('live-status').textContent = 'connection lost — is the server still running?';
-    document.getElementById('live-dot').style.background = 'var(--risk)';
+    return { ok: false, error: `Not sent: ${e && e.message ? e.message : 'the board could not save it'}. Your text is still here; tap again.` };
   }
 }
 
-refresh();
-setInterval(refresh, 15000);
-window.addEventListener('focus', refresh);
+async function onAnswer(b) {
+  const box = document.querySelector(`[data-text="${CSS.escape(b.dataset.id)}"]`);
+  const text = box ? box.value : '';
+  b.disabled = true;
+  const out = SNAP ? await sendFromPhone(b.dataset.id, b.dataset.choice, text) : await post('/api/answer', { id: b.dataset.id, choice: b.dataset.choice, text });
+  b.disabled = false;
+  const err = document.querySelector(`[data-err="${CSS.escape(b.dataset.id)}"]`);
+  if (!out.ok) { err.textContent = out.error; return; }
+  if (SNAP) { err.textContent = ''; if (box) box.value = ''; render(); } else load();
+}
+
+async function onStart(b) {
+  const slot = document.querySelector(`[data-prompt="${CSS.escape(b.dataset.start)}"]`);
+  if (SNAP) {
+    const p = board.projects.find((x) => x.slug === b.dataset.start);
+    slot.innerHTML = `<pre>${esc(p.nextUp.prompt)}</pre><div class="note">Starting writes a claim, so do it at the PC: npm run gmsd -- start ${esc(p.slug)} ${esc(p.nextUp.unit)}</div>`;
+    return;
+  }
+  const out = await post('/api/start', { slug: b.dataset.start, unit: b.dataset.unit });
+  if (!out.ok) { slot.innerHTML = `<div class="err">${esc(out.refusals.map((r) => r.rule + ': ' + r.message).join(' | '))}</div>`; return; }
+  try { await navigator.clipboard.writeText(out.prompt); } catch {}
+  slot.innerHTML = `<pre>${esc(out.prompt)}</pre><div class="note">Copied. Paste it into a new chat.</div>`;
+}
+
+document.addEventListener('click', (e) => {
+  const b = e.target.closest('button');
+  if (!b) return;
+  if (b.dataset.choice) onAnswer(b);
+  if (b.dataset.start) onStart(b);
+});
+
+async function wirePhone() {
+  if (!SNAP || !window.claude || !window.claude.use) return;
+  phoneDb = await window.claude.use('db');
+  if (!phoneDb) { byId('meta').textContent += ' Answering is off in this view; open it in Claude, signed in.'; return; }
+  phoneDb.collection('answers').onSnapshot(
+    (snap) => { sentDocs = snap.docs.map((d) => d.data()); render(); },
+    () => { byId('meta').textContent += ' Earlier answers could not be loaded; sending may still work.'; },
+  );
+}
+
+load();
+wirePhone();
 </script>
 </body>
 </html>
