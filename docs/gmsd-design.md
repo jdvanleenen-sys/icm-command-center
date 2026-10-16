@@ -217,3 +217,30 @@ I expect fan-ins to be rare in these 3, possibly none. R6 gets proved on the pla
   the tiebreak for next up.
 - **The Control** uses slug `the-control`. Its root is `C:/GitHub/the-control-icm`, and it uses
   absolute paths into `C:/GitHub/the-control`.
+
+## 10. What changed during the build (2026-10-15 night; the code is the reference)
+
+Each change came from a test, an independent audit, or a cold hand-off, and is covered by `npm test`.
+
+- **More probes.** `lacks <path> <text>` (the file does not contain the text), `approved <path>`
+  (an in-file stamp, or a ledger approval whose hash matches; used where a project has no
+  signing rule of its own, e.g. the Control's PUBLISHING.md), and `answered <item-id>` (Jeff
+  answered that queue item; on disk in `state/answers.jsonl`).
+- **Status "waiting on Jeff".** A gate unit whose return exists, or a decision unit (a gate and no
+  `returns`) whose `waits_on` are done and that has no answer yet. It sits between running and
+  unknown. Next up never picks it.
+- **Decision units.** `writes: none` declares a unit that changes no file. With
+  `done_when: answered <its gate item>`, one reply closes it, and the answer is carried into the
+  start prompt of every unit that waits on it ("Jeff's answers that apply").
+- **R1 counts every running unit,** including work in flight that GMSD did not start
+  (`active_when` true), not only GMSD claims.
+- **A unit that writes a fact file is that fact's producer.** R3 does not hold it for that file,
+  and its prompt says "Jeff re-approves after". Its edit lapses any hash approval, so every unit
+  downstream is held until Jeff approves again: changes go through the top.
+- **R6 checks existence only.** A fan-in's `cross-read.md` must exist before any branch or the
+  fan-in itself can start. The "committed before the first claim" timestamp check was dropped.
+  Refusing the start already enforces the order going forward.
+- **The parser flags a key set twice in one unit.** Before, the last line silently won.
+- **Prompts name the graph by absolute path,** and every recorded date is the local date, not UTC.
+- **The CLI refuses unknown flags.** A mistyped `--dry` once wrote a real claim; that claim was
+  deleted the same minute, and the guard now stops it.
