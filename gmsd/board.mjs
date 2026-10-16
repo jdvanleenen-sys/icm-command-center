@@ -1,6 +1,7 @@
 // board.mjs — the one project list, built from disk on every call, and its STATUS.md rendering.
 import fs from 'node:fs';
 import path from 'node:path';
+import { findUntracked, readDiscoverConfig } from './discover.mjs';
 import { startPrompt } from './prompt.mjs';
 import { buildQueue } from './queue.mjs';
 import { allStatuses, nextUp } from './status.mjs';
@@ -45,13 +46,17 @@ function projectView(world, graph, statuses) {
   return view;
 }
 
+function untracked(home) {
+  try { return findUntracked(home, readDiscoverConfig()).map((f) => f.rel); } catch { return []; }
+}
+
 export function buildBoard(home) {
   const world = buildWorld(home);
   const byProject = allStatuses(world);
   const projects = world.graphs.map((g) => projectView(world, g, byProject.get(g.slug)));
   const queue = buildQueue(world);
   const graphed = new Set(world.graphs.map((g) => g.slug));
-  return { generated: new Date().toISOString(), projects, queue, legacy: legacyCards(home, graphed) };
+  return { generated: new Date().toISOString(), projects, queue, legacy: legacyCards(home, graphed), untracked: untracked(home) };
 }
 
 const cell = (t) => String(t ?? '').replace(/\|/g, '/').replace(/\r?\n/g, ' ');
@@ -84,5 +89,7 @@ export function renderStatusMd(board) {
   lines.push('## Projects with no graph yet', '', 'Their hand-written cards are kept as data. Their typed state is not shown as current.', '');
   lines.push('| Project | Card last edited | Folder |', '|---|---|---|');
   for (const c of board.legacy) lines.push(`| ${cell(c.name)} | ${cell(c.cardUpdated)} | ${cell(c.folder)} |`);
+  lines.push('', '## Folders no card or graph names', '');
+  lines.push(...(board.untracked.length ? board.untracked.map((f) => `- ${f}`) : ['- none']));
   return `${lines.join('\n')}\n`;
 }

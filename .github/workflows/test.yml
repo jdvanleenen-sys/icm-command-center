@@ -1,0 +1,13 @@
+name: test
+# Runs the GMSD tests on every push and pull request. Tests that read the real project
+# folders (server.test.mjs) see none on the CI runner, so they check shape, not content.
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm test

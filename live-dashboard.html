@@ -100,7 +100,8 @@ async function load() {
   document.getElementById('projects').innerHTML = board.projects.map(projectCard).join('');
   document.getElementById('answered').innerHTML = board.queue.answered.map(answeredCard).join('') || '<div class="card small">None.</div>';
   const legacy = board.legacy.map((c) => `<tr><td>${esc(c.name)}</td><td>${esc(c.cardUpdated)}</td><td class="small">${esc(c.folder)}</td></tr>`).join('');
-  document.getElementById('legacy').innerHTML = `<table><tr><th>Project</th><th>Card last edited</th><th>Folder</th></tr>${legacy}</table>`;
+  const loose = board.untracked.length ? `<p class="small">Folders no card or graph names: ${esc(board.untracked.join(', '))}</p>` : '';
+  document.getElementById('legacy').innerHTML = `<table><tr><th>Project</th><th>Card last edited</th><th>Folder</th></tr>${legacy}</table>${loose}`;
 }
 
 document.addEventListener('click', async (e) => {

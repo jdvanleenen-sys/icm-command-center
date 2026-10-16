@@ -1,6 +1,7 @@
 ---
 project: Idea Engine
 root: C:/GitHub/idea-engine-van-leenen
+folder: 10 Ventures/idea-engine
 links: []
 ---
 

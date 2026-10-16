@@ -1,6 +1,7 @@
 ---
 project: Trades Office
 root: C:/Users/JeffvanLeenen/OneDrive - fifthaveproperties.com/Jeff-HQ/10 Ventures/trades-office
+folder: 10 Ventures/trades-office
 links: []
 ---
 
