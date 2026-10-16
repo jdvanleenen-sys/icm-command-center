@@ -3,7 +3,7 @@
 import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
-import { readIfExists, samePathKey } from './paths.mjs';
+import { localDate, readIfExists, samePathKey } from './paths.mjs';
 
 // approved by NAME on DATE · approved_by: NAME, DATE · status: approved by NAME DATE
 const STAMP = /approved[ _]by:?[ \t]+([A-Za-z][\w .'-]{0,40}?),?[ \t]+(?:on[ \t]+)?(\d{4}-\d{2}-\d{2})/i;
@@ -51,6 +51,6 @@ export function factApproval(home, file) {
 export function recordApproval(home, file, by, answerId) {
   const text = readIfExists(file);
   if (text == null) throw new Error(`cannot approve a missing file: ${file}`);
-  const on = new Date().toISOString().slice(0, 10);
+  const on = localDate();
   appendJsonl(ledgerFile(home), { path: file, sha256: sha256(text), by, on, answerId });
 }

@@ -40,7 +40,12 @@ function parseUnits(body) {
       current.lines.push(line);
     }
   }
-  return units.map((u, index) => ({ id: u.id, index, ...defaults(), ...parseKeyLines(u.lines) }));
+  return units.map((u, index) => {
+    const unit = { id: u.id, index, ...defaults(), ...parseKeyLines(u.lines) };
+    // `writes: none` is a declared decision unit that changes no file; it still counts as declared.
+    if (unit.writes.length === 1 && unit.writes[0] === 'none') { unit.writes = []; unit.writesNone = true; }
+    return unit;
+  });
 }
 
 function defaults() {
@@ -57,6 +62,7 @@ function validate(graph) {
     seen.add(u.id);
     for (const k of u.duplicateKeys) problems.push(`unit ${u.id} sets ${k} twice; only the last line counts`);
     for (const f of REQUIRED) {
+      if (f === 'writes' && u.writesNone) continue;
       const v = u[f];
       if (v == null || (Array.isArray(v) ? !v.length : !String(v).trim())) problems.push(`unit ${u.id} has no ${f}:`);
     }

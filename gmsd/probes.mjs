@@ -3,6 +3,7 @@
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import { existsPath, readIfExists, resolvePath } from './paths.mjs';
+import { readAnswers } from './answers.mjs';
 import { factApproval, findStamp } from './stamps.mjs';
 
 export function tokenize(text) {
@@ -109,8 +110,16 @@ export function evalProbe(probe, root, home) {
   if (/^all\s/.test(text)) return allProbe(text.slice(4), root, home);
   const [kind, target, ...args] = tokenize(text);
   if (kind === 'branch' || kind === 'merged') return gitProbe(kind, root, target);
+  if (kind === 'answered') return answeredProbe(home, target);
   if (!target) return unknown(`probe has no path: ${text}`);
   return fileProbe(kind, resolvePath(root, target), args, home);
+}
+
+// A decision Jeff gave in the queue is on disk in this repo's state/answers.jsonl.
+function answeredProbe(home, itemId) {
+  if (!home) return unknown('answered probe needs the GMSD home');
+  const answer = readAnswers(home).reverse().find((a) => a.id === itemId);
+  return result(!!answer, answer ? `Jeff answered ${itemId} on ${answer.on}: ${answer.text || answer.label}` : `no answer yet for ${itemId}`);
 }
 
 function allProbe(rest, root, home) {

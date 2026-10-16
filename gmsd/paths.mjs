@@ -42,3 +42,8 @@ export function readIfExists(file) {
 export function existsPath(file) {
   return fs.existsSync(file.replace(/\/$/, ''));
 }
+
+// Today's date on this machine's clock (Jeff is in Calgary), as YYYY-MM-DD. Never UTC.
+export function localDate(d = new Date()) {
+  return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+}

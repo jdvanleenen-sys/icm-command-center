@@ -78,3 +78,17 @@ test('converge: an unruled difference is a ruling item, and answering it appends
     assert.ok(!buildBoard(fx.home).queue.open.some((it) => it.gate === 'ruling'));
   } finally { fx.cleanup(); }
 });
+
+test('decision unit: one reply closes it, and its answer rides into the next unit prompt', () => {
+  const fx = makeFixture();
+  try {
+    fx.file('facts.md', '# Facts\n\napproved by Jeff on 2026-10-01\n');
+    fx.graph('dec', `---\nproject: Dec\nroot: ${fx.root}\n---\n\n## pick\ntitle: Pick the colour\nwrites: none\ndone_when: answered dec/pick/gate\ngate: Jeff picks\nstart_reads: facts.md\nstop_at: answer recorded\n\n## paint\ntitle: Paint\nwaits_on: pick\nwrites: out/\ndone_when: exists out/done.md\nstart_reads: facts.md\nstop_at: out/done.md written\n`);
+    let board = buildBoard(fx.home);
+    assert.equal(board.projects[0].units[0].status, 'waiting on Jeff');
+    assert.equal(answerItem(fx.home, 'dec/pick/gate', 'a', 'blue').ok, true);
+    board = buildBoard(fx.home);
+    assert.deepEqual(board.projects[0].units.map((u) => u.status), ['done', 'ready']);
+    assert.match(board.projects[0].nextUp.prompt, /Jeff's answers that apply: .*blue/);
+  } finally { fx.cleanup(); }
+});

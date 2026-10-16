@@ -4,7 +4,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { convergeDir, isFanIn } from './checker.mjs';
-import { readIfExists, toSlash } from './paths.mjs';
+import { localDate, readIfExists, toSlash } from './paths.mjs';
 import { sha256 } from './stamps.mjs';
 
 export function parseTable(text) {
@@ -64,7 +64,7 @@ export function rulingItems(world) {
 }
 
 export function appendRuling(file, differenceId, ruling, by) {
-  const on = new Date().toISOString().slice(0, 10);
+  const on = localDate();
   if (!fs.existsSync(file)) {
     fs.mkdirSync(path.dirname(file), { recursive: true });
     fs.writeFileSync(file, '# Rulings\n\n| id | ruling | by | on |\n|---|---|---|---|\n', 'utf8');

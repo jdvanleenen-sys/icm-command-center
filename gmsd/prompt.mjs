@@ -1,6 +1,8 @@
 // prompt.mjs — the paste-ready start prompt. The first line names the chat; it names the folder,
 // the unit, what to read, what it may write and where to stop. GMSD never runs the unit itself.
+import path from 'node:path';
 import { writesFile } from './checker.mjs';
+import { toSlash } from './paths.mjs';
 import { chatName } from './claims.mjs';
 import { factApproval } from './stamps.mjs';
 import { notesFor } from './answers.mjs';
@@ -14,7 +16,7 @@ export function startPrompt(world, unit) {
   const lines = [
     `Chat: ${chatName(unit.slug, unit.id)}`,
     `Folder: ${unit.root}`,
-    `Unit: ${unit.id}, ${unit.title}. Graph: command-center/projects/${unit.slug}/graph.md`,
+    `Unit: ${unit.id}, ${unit.title}. Graph: ${toSlash(path.join(world.home, 'projects', unit.slug, 'graph.md'))}`,
     `Read first: ${unit.start_reads.join(', ')}`,
   ];
   const owned = unit.factsAbs.filter((f) => writesFile(unit, f));

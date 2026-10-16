@@ -1,6 +1,7 @@
 // actions.mjs — the two things that change GMSD state: starting a unit and answering an item.
 // Both write only inside the GMSD repo (state/, projects/<slug>/converge/). Never a project file.
 import { chatName, writeClaim } from './claims.mjs';
+import { localDate } from './paths.mjs';
 import { checkUnit } from './checker.mjs';
 import { appendRuling } from './converge.mjs';
 import { recordAnswer } from './answers.mjs';
@@ -32,7 +33,7 @@ function signPrompt(world, it) {
   return [
     `Chat: ${chatName(unit.slug, unit.id)} / sign`,
     `Folder: ${unit.root}`,
-    `Jeff approved ${it.open} in GMSD on ${new Date().toISOString().slice(0, 10)}.`,
+    `Jeff approved ${it.open} in GMSD on ${localDate()}.`,
     `Record that approval in the file the way this project's own rule says (for example "approved_by: Jeff, <date>"). Change nothing else.`,
   ].join('\n');
 }

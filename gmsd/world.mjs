@@ -1,4 +1,5 @@
 // world.mjs — load every graph, run every probe once, and index units by "<slug>:<id>".
+import { readAnswers } from './answers.mjs';
 import { readClaims, chatName } from './claims.mjs';
 import { loadGraphs } from './graph.mjs';
 import { readIfExists, resolvePath } from './paths.mjs';
@@ -75,5 +76,6 @@ export function ownerOf(u) {
 export function awaitsJeff(world, u) {
   if (!u.gate || isDone(u) || isRunning(u)) return false;
   if (u.returnsFile) return u.returnsText != null;
-  return u.waits_on.every((ref) => isDone(world.units.get(depKey(u.slug, ref))));
+  const answered = readAnswers(world.home).some((a) => a.id === `${u.slug}/${u.id}/gate`);
+  return !answered && u.waits_on.every((ref) => isDone(world.units.get(depKey(u.slug, ref))));
 }

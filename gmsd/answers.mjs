@@ -1,6 +1,7 @@
 // answers.mjs — Jeff's replies, one line each in state/answers.jsonl. An answer closes the item
 // it was given for while the item's fingerprint holds; if the disk changes, the item comes back.
 import path from 'node:path';
+import { localDate } from './paths.mjs';
 import { appendJsonl, readJsonl } from './stamps.mjs';
 
 const answersFile = (home) => path.join(home, 'state', 'answers.jsonl');
@@ -21,5 +22,5 @@ export function notesFor(home, unitKey) {
 }
 
 export function recordAnswer(home, record) {
-  appendJsonl(answersFile(home), { ...record, on: new Date().toISOString().slice(0, 10), at: new Date().toISOString() });
+  appendJsonl(answersFile(home), { ...record, on: localDate(), at: new Date().toISOString() });
 }
