@@ -16,6 +16,8 @@ format, the probes, the checker rules, the queue item shape) is [docs/gmsd-desig
 | Answer a queue item | a button on the dashboard, or `npm run gmsd -- answer <id> <a/b/c> [text]` |
 | Start the next unit of a project | "Start it" on the dashboard, or `npm run gmsd -- start <slug> <unit>`; paste the prompt into a new chat |
 | Ask why a unit will not start | `npm run gmsd -- check <slug> <unit>` |
+| See the board on my phone | the phone copy, a private claude.ai page: https://claude.ai/artifact/FCfATLveC6eJmJJmViKfqH (a still copy; refresh it below) |
+| Refresh the phone copy and apply what I answered there | 1) ArtifactData `list` of collection `answers` on that URL, save the docs (with `docId`) to a JSON file; 2) `npm run gmsd -- phone-apply <file>`; 3) ArtifactData `update` each doc's `status` (and `reason`) from the result; 4) `npm run gmsd -- snapshot <file>` and publish that file to the same URL |
 | Put a project on the graph | write `projects/<slug>/graph.md` (format in docs/gmsd-design.md sections 2 and 9) |
 | The curriculum | its own board (`C:\GitHub\animation-build`, `npm run board`); GMSD shows it as one link row and never starts or gates a lesson |
 | Know which URL/account/key I still need | `urls-and-accounts.md`, local only, never committed |
