@@ -20,6 +20,7 @@ test('graph parser names missing required fields and duplicate ids', () => {
   const g = parseGraph('---\nproject: P\nroot: C:/x\n---\n## u1\ntitle: T\n## u1\ntitle: T\n', 'p');
   assert.ok(g.problems.some((p) => p.includes('no writes')));
   assert.ok(g.problems.some((p) => p.includes('declared twice')));
+  assert.ok(g.problems.some((p) => p.includes('sets title twice')));
 });
 
 test('stamp formats on disk are accepted; blank template lines are not', () => {

@@ -43,13 +43,29 @@ function editGraph(copy, slug, fn) {
   fs.writeFileSync(file, fn(fs.readFileSync(file, 'utf8')));
 }
 
-const addLine = (unitId, line) => (text) => text.replace(new RegExp(`(## ${unitId}\\r?\\ntitle: [^\\n]*\\n)`), `$1${line}\n`);
+// Add a dependency to a unit: extend its waits_on line, or add one after its title.
+const addWait = (unitId, dep) => (text) => {
+  const start = text.indexOf(`## ${unitId}\n`) >= 0 ? text.indexOf(`## ${unitId}\n`) : text.indexOf(`## ${unitId}\r\n`);
+  const end = text.indexOf('\n## ', start + 1) < 0 ? text.length : text.indexOf('\n## ', start + 1);
+  let block = text.slice(start, end);
+  block = /^waits_on: .*$/m.test(block)
+    ? block.replace(/^(waits_on: .*?)\s*$/m, `$1, ${dep}`)
+    : block.replace(/^(title: .*)$/m, `$1\nwaits_on: ${dep}`);
+  return text.slice(0, start) + block + text.slice(end);
+};
+
+// The target must pass the checker before planting. In the copy only, settle open question 10,
+// which 01x waits on, so every refusal after a plant is the planted one.
+function prepareTarget(copy) {
+  const file = path.join(copy.root('idea-engine'), '_shared', 'open-questions.md');
+  fs.writeFileSync(file, fs.readFileSync(file, 'utf8').replace('(stage 01X smoke test, then stage 04) | Jeff + Roelof | open |', '(stage 01X smoke test, then stage 04) | Jeff + Roelof | settled in the throwaway copy |'));
+}
 
 const PLANTS = [
   { rule: 'R1', what: '01x also writes app/, which running unit 01-founder-recall writes',
     plant: (c) => editGraph(c, 'idea-engine', (t) => t.replace('writes: stages/01x_second-host/output/', 'writes: stages/01x_second-host/output/, app/')) },
   { rule: 'R2', what: '01x waits on 02-founder-cases, which is not done',
-    plant: (c) => editGraph(c, 'idea-engine', addLine('01x-second-host', 'waits_on: 02-founder-cases')) },
+    plant: (c) => editGraph(c, 'idea-engine', addWait('01x-second-host', '02-founder-cases')) },
   { rule: 'R3', what: 'the stamp is removed from the copied _shared/PRD.md',
     plant: (c) => {
       const prd = path.join(c.root('idea-engine'), '_shared', 'PRD.md');
@@ -59,10 +75,10 @@ const PLANTS = [
     plant: (c) => {
       const done = path.join(c.root('idea-engine'), 'stages', '00_contain-define', 'output', 'done.md');
       fs.appendFileSync(done, '\n## Missing facts\n- the second host list\n');
-      editGraph(c, 'idea-engine', addLine('01x-second-host', 'waits_on: 00-contain-define'));
+      editGraph(c, 'idea-engine', addWait('01x-second-host', '00-contain-define'));
     } },
   { rule: 'R5', what: '00 waits on 01x and 01x waits on 00',
-    plant: (c) => editGraph(c, 'idea-engine', (t) => addLine('01x-second-host', 'waits_on: 00-contain-define')(addLine('00-contain-define', 'waits_on: 01x-second-host')(t))) },
+    plant: (c) => editGraph(c, 'idea-engine', (t) => addWait('01x-second-host', '00-contain-define')(addWait('00-contain-define', '01x-second-host')(t))) },
   { rule: 'R6', what: 'a new fan-in waits on 01x and 01-founder-recall, with no cross-read.md',
     plant: (c) => editGraph(c, 'idea-engine', (t) => `${t.trimEnd()}\n\n## planted-merge\ntitle: Planted fan-in\nwaits_on: 01x-second-host, 01-founder-recall\nwrites: planted/\ndone_when: exists planted/out.md\nstart_reads: CONTEXT.md\nstop_at: planted/out.md written\n`) },
 ];
@@ -79,6 +95,7 @@ function baseline() {
     const real = statusMap(HOME);
     const copied = statusMap(copy.home);
     const diffs = Object.keys(real).filter((k) => real[k] !== copied[k]).map((k) => `${k}: real ${real[k]}, copy ${copied[k]}`);
+    prepareTarget(copy);
     const targetClean = checkUnit(buildWorld(copy.home), TARGET).length === 0;
     return { units: Object.keys(real).length, diffs, targetClean };
   } finally { fs.rmSync(copy.base, { recursive: true, force: true }); }
@@ -87,6 +104,7 @@ function baseline() {
 function runPlant(p) {
   const copy = makeCopy();
   try {
+    prepareTarget(copy);
     p.plant(copy);
     const rules = checkUnit(buildWorld(copy.home), TARGET).map((r) => r.rule);
     return { ...p, caught: rules.includes(p.rule), rules };

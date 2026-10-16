@@ -12,10 +12,11 @@ export function splitList(value) {
 }
 
 function parseKeyLines(lines) {
-  const out = {};
+  const out = { duplicateKeys: [] };
   for (const line of lines) {
     const kv = line.match(/^([a-z][\w]*):\s*(.*?)\s*(?:\s#\s.*)?$/);
     if (!kv) continue;
+    if (kv[1] in out) out.duplicateKeys.push(kv[1]);
     out[kv[1]] = LIST_FIELDS.includes(kv[1]) ? splitList(kv[2]) : kv[2];
   }
   return out;
@@ -54,6 +55,7 @@ function validate(graph) {
   for (const u of graph.units) {
     if (seen.has(u.id)) problems.push(`unit ${u.id} is declared twice`);
     seen.add(u.id);
+    for (const k of u.duplicateKeys) problems.push(`unit ${u.id} sets ${k} twice; only the last line counts`);
     for (const f of REQUIRED) {
       const v = u[f];
       if (v == null || (Array.isArray(v) ? !v.length : !String(v).trim())) problems.push(`unit ${u.id} has no ${f}:`);
