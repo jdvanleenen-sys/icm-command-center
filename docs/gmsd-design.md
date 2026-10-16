@@ -194,3 +194,26 @@ I expect fan-ins to be rare in these 3, possibly none. R6 gets proved on the pla
   the right unit without asking a question.
 - **Queue:** every item has 1 to 3 answers, each with one code action, checked by the test.
 - **`npm test`:** happy and failure paths for the parser, probes, checker and board builder.
+
+## 9. Frozen details (added 2026-10-15 22:00 MDT, before fan-out; Jeff said "keep going")
+
+- **Paths.** Relative to `root`, or absolute (`C:/...`), so one project may span two repos.
+  Forward slashes. In `done_when` and `active_when`, wrap any path containing a space in
+  backticks. Lists (`waits_on`, `reads`, `writes`, `facts`, `start_reads`) are comma-separated;
+  backticks are optional there.
+- **`done_when: none`** means no disk marker exists. Status is `unknown` ("no disk marker"),
+  and the unit becomes a gap item. This is honest, not a failure of the graph.
+- **`active_when: <probe>`** (optional) marks work in flight that GMSD did not start, for
+  example `branch feature/01-founder-recall`. When it is true and the unit is not done, the
+  status is `running` and the owner is "unknown (started outside GMSD)".
+- **Extra probes.** `branch <name>`: the branch exists in `root`'s git repo. `absent <path>`:
+  the path does not exist. `contains <path> <text>`: the file contains the text (put the
+  text in backticks).
+- **Return file.** A heading `## Missing facts` followed by `- ` items. The words `none` or
+  `(none)`, or no items at all, count as empty. If the heading is missing, the list is empty.
+- **Unit gate item.** Raised when the unit has a `gate`, its `returns` file exists, and its
+  `done_when` is false.
+- **Order.** Units appear in `graph.md` in the order the work is meant to run. That order is
+  the tiebreak for next up.
+- **The Control** uses slug `the-control`. Its root is `C:/GitHub/the-control-icm`, and it uses
+  absolute paths into `C:/GitHub/the-control`.
