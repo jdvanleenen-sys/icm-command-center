@@ -1,0 +1,29 @@
+// prompt.mjs — the paste-ready start prompt. The first line names the chat; it names the folder,
+// the unit, what to read, what it may write and where to stop. GMSD never runs the unit itself.
+import { chatName } from './claims.mjs';
+import { factApproval } from './stamps.mjs';
+import { notesFor } from './answers.mjs';
+
+function factLine(home, file) {
+  const a = factApproval(home, file);
+  return a.ok ? `${file} (approved by ${a.stamp.by} on ${a.stamp.on})` : `${file} (NOT approved)`;
+}
+
+export function startPrompt(world, unit) {
+  const lines = [
+    `Chat: ${chatName(unit.slug, unit.id)}`,
+    `Folder: ${unit.root}`,
+    `Unit: ${unit.id}, ${unit.title}. Graph: command-center/projects/${unit.slug}/graph.md`,
+    `Read first: ${unit.start_reads.join(', ')}`,
+  ];
+  if (unit.factsAbs.length) lines.push(`Shared facts (read, never edit): ${unit.factsAbs.map((f) => factLine(world.home, f)).join('; ')}`);
+  if (unit.waits_on.length) lines.push(`Built on (done): ${unit.waits_on.join(', ')}`);
+  lines.push(`You may write only: ${unit.writes.join(', ')}`);
+  const notes = notesFor(world.home, unit.key);
+  if (notes.length) lines.push(`Jeff's answers that apply: ${notes.join(' | ')}`);
+  lines.push(`Stop at: ${unit.stop_at}`);
+  if (unit.returns) lines.push(`Return: ${unit.returns}, ending with a "## Missing facts" list of any fact you needed and were not given (write "- none" if none).`);
+  if (unit.gate) lines.push(`Gate: ${unit.gate}. Do not pass it yourself.`);
+  lines.push('Do not start any other unit. If a fact you need is missing, stop and list it; do not guess.');
+  return lines.join('\n');
+}
